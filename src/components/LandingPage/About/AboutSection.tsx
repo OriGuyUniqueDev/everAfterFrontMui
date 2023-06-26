@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { FunctionComponent } from "react";
-import { Outlet } from "react-router-dom";
 
 interface AboutSectionProps {}
 
