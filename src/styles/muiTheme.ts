@@ -8,7 +8,7 @@ export const theme = {
 		},
 		background: {
 			default: "#1f2937",
-			paper: "#ffffff",
+			paper: "#1f2937",
 		},
 		error: {
 			main: "#dc2626",
