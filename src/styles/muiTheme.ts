@@ -1,4 +1,6 @@
-export const theme = {
+import { createTheme } from "@mui/material";
+
+export const theme = createTheme({
 	palette: {
 		primary: {
 			main: "#7986cb",
@@ -41,4 +43,4 @@ export const theme = {
 			fontFamily: '"Abril Fatface", sans-serif',
 		},
 	},
-};
+});
