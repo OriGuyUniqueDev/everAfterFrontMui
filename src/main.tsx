@@ -1,9 +1,12 @@
+import { ThemeProvider } from "@emotion/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutSection from "./components/LandingPage/About/AboutSection";
 import LandingPageHome from "./components/LandingPage/LandingPageHome/LandingPageHome";
 import LandingPage from "./pages/LandingPage";
+import { theme } from "./styles/muiTheme";
+import "./styles/main.css";
 
 const router = createBrowserRouter([
 	{
@@ -24,6 +27,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<ThemeProvider theme={theme}>
+			<RouterProvider router={router} />
+		</ThemeProvider>
 	</React.StrictMode>
 );
