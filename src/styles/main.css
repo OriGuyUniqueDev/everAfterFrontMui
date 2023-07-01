@@ -2,3 +2,9 @@
 html {
 	background-color: #1f2937;
 }
+a,
+a:active,
+a:visited {
+	text-decoration: none;
+	color: white;
+}
