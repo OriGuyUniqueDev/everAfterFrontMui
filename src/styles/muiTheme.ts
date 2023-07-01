@@ -42,5 +42,11 @@ export const theme = createTheme({
 		h4: {
 			fontFamily: '"Abril Fatface", sans-serif',
 		},
+		h5: {
+			fontFamily: '"Abril Fatface", sans-serif',
+		},
+		h6: {
+			fontFamily: '"Abril Fatface", sans-serif',
+		},
 	},
 });
