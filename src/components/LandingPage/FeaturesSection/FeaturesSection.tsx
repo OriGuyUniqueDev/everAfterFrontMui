@@ -5,6 +5,7 @@ import ContentWrapper from "../components/ContentWrapper";
 import Grid from "@mui/material/Unstable_Grid2";
 import FeatureCard from "./FeatureCard";
 import FeatureCardType from "@/interfaces/FeatureCardType";
+import FeatureCardContainer from "./FeatureCardContainer";
 
 interface FeaturesSectionProps {}
 
@@ -55,11 +56,7 @@ const FeaturesSection: FunctionComponent<FeaturesSectionProps> = () => {
 					<Typography marginBottom={15} fontSize={{ xs: 56, md: 70, lg: 60 }} sx={{ textDecoration: "underline", textAlign: "center", width: "100%" }} variant="h1" color={"text.primary"}>
 						Features
 					</Typography>
-					<Grid justifyContent={"space-evenly"} spacing={10} alignItems={"stretch"} container>
-						{featureData.map((featureCard) => {
-							return <FeatureCard cardHeader={featureCard.cardHeader} cardContent={featureCard.cardContent} imgSrc={featureCard.imgSrc} imgAlt={featureCard.imgAlt} />;
-						})}
-					</Grid>
+					<FeatureCardContainer featureData={featureData} />
 				</Stack>
 			</ContentWrapper>
 		</span>
