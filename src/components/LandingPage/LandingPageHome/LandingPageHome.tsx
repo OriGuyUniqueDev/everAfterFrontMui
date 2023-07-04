@@ -11,7 +11,7 @@ const LandingPageHome: FunctionComponent<LandingPageHomeProps> = () => {
 		<>
 			<HeroSection />
 			<FeaturesSection />
-			{/* <ContactSection /> */}
+			<ContactSection />
 		</>
 	);
 };
