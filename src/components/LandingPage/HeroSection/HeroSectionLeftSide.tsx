@@ -28,11 +28,11 @@ const HeroSectionLeftSide: FunctionComponent<HeroSectionLeftSideProps> = () => {
 				</Stack>
 
 				<Stack direction={{ xs: "column", lg: "row" }} gap={1}>
-					<Button sx={{ fontFamily: "Pacifico", fontWeight: "700", width: "13rem", textTransform: "none" }} size={"large"} variant="contained" color="secondary">
+					<Button sx={{ fontFamily: "Pacifico", width: "13rem", textTransform: "none", fontSize: 18 }} size={"medium"} variant="contained" color="secondary">
 						Start Planning
 					</Button>
 
-					<Button sx={{ width: "13rem", color: "#fff", outlineColor: "#fff", textTransform: "none" }} variant="outlined" size={"large"}>
+					<Button sx={{ width: "13rem", color: "#fff", outlineColor: "#fff", textTransform: "none", fontSize: 18 }} variant="outlined" size={"medium"}>
 						Discover EverAfter
 					</Button>
 				</Stack>

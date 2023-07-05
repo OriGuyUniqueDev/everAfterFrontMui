@@ -8,14 +8,17 @@ interface LandingPageButtonsProps {
 
 const LandingPageButtons: FunctionComponent<LandingPageButtonsProps> = ({ showButtons }) => {
 	return (
-		<Stack direction={"row"} gap={3} display={{ xs: showButtons ? "flex" : "none", md: "flex" }}>
-			<Button sx={{ fontFamily: "Pacifico", fontWeight: "700", width: "8rem" }} size={"medium"} variant="contained" color="secondary">
-				Login
-			</Button>
-			<Button sx={{ width: "8rem", color: "#fff", outlineColor: "#fff" }} variant="outlined" size={"medium"}>
-				SignUp
-			</Button>
-		</Stack>
+		<>
+			<Stack direction={"row"} gap={3} display={{ xs: showButtons ? "flex" : "none", md: "flex" }}>
+				<Button sx={{ fontFamily: "Pacifico", width: "10rem", textTransform: "none", fontSize: 18 }} size={"small"} variant="contained" color="secondary">
+					Login
+				</Button>
+
+				<Button sx={{ width: "10rem", color: "#fff", outlineColor: "#fff", textTransform: "none", fontSize: 18 }} variant="outlined" size={"small"}>
+					SignUp
+				</Button>
+			</Stack>
+		</>
 	);
 };
 

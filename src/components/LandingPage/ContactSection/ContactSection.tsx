@@ -15,7 +15,7 @@ const ContactSection: FunctionComponent<ContactSectionProps> = () => {
 				<Typography marginBottom={10} fontSize={22} sx={{ textDecoration: "", textAlign: "center", width: "100%" }} variant="body1" color={"text.primary"}>
 					Join the EverAfter community and start planning your dream wedding today.{" "}
 				</Typography>
-				<Button sx={{ fontFamily: "Pacifico", fontWeight: "100", width: "20rem", textTransform: "none", fontSize: 24 }} size={"large"} variant="contained" color="secondary">
+				<Button sx={{ fontFamily: "Pacifico", width: "18rem", textTransform: "none", fontSize: 24 }} size={"small"} variant="contained" color="secondary">
 					Register
 				</Button>
 			</Stack>
