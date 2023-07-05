@@ -4,13 +4,14 @@ export const theme = createTheme({
 	palette: {
 		primary: {
 			main: "#7986cb",
+			contrastText: "#fff",
 		},
 		secondary: {
 			main: "#ff80ab",
 		},
 		background: {
 			default: "#1f2937",
-			paper: "#1f2937",
+			paper: "#2E3847",
 		},
 		error: {
 			main: "#dc2626",
@@ -26,6 +27,20 @@ export const theme = createTheme({
 		},
 		text: {
 			primary: "#FFFFFF",
+		},
+	},
+	components: {
+		MuiOutlinedInput: {
+			styleOverrides: {
+				root: {
+					"&:hover:not($disabled):not($focused):not($error) $notchedOutline": {
+						borderColor: "#bbb",
+					},
+				},
+				notchedOutline: {
+					borderColor: "#bbb",
+				},
+			},
 		},
 	},
 	typography: {
