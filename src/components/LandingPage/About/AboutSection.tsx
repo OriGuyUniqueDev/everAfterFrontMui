@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { FunctionComponent } from "react";
 import ContentWrapper from "../components/ContentWrapper";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -37,13 +37,13 @@ const AboutSection: FunctionComponent<AboutSectionProps> = () => {
 						Accomplishments:
 					</Typography>
 					<Typography variant="body1" sx={{ mb: 2 }}>
-						<StarIcon /> Graduated as a proficient full-stack developer, building an outstanding portfolio and gaining practical experience in various JavaScript libraries.
+						<StarIcon color="warning" /> Graduated as a proficient full-stack developer, building an outstanding portfolio and gaining practical experience in various JavaScript libraries.
 					</Typography>
 					<Typography variant="body1" sx={{ mb: 2 }}>
-						<StarIcon /> Demonstrated exceptional management skills, leading professional personnel and managing cross-organizational projects.
+						<StarIcon color="warning" /> Demonstrated exceptional management skills, leading professional personnel and managing cross-organizational projects.
 					</Typography>
 					<Typography variant="body1" sx={{ mb: 2 }}>
-						<StarIcon /> Designed and developed training programs and courses in customer support and service, imparting professional knowledge to support reps and professional personnel.
+						<StarIcon color="warning" /> Designed and developed training programs and courses in customer support and service, imparting professional knowledge to support reps and professional personnel.
 					</Typography>
 					<Typography variant="body1" sx={{ mb: 2 }}>
 						By leveraging my technical skills, management background, and customer service expertise, I am well-equipped to contribute to projects and excel in a professional developer role. I am passionate about continual learning and always seeking opportunities to expand my knowledge.
