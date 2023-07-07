@@ -6,17 +6,19 @@ import LandingPageButtons from "./components/LandingPageButtons";
 import LandingPageHamburger from "./components/LandingPageHamburger";
 import LandingPageLeftSideNavBar from "./components/LandingPageLeftSideNavBar";
 import LoginPage from "@/pages/LoginPage";
+import RegistrationPage from "@/pages/RegistrationPage";
 
 interface NavbarLandingPageProps {}
 
 const NavbarLandingPage: FunctionComponent<NavbarLandingPageProps> = () => {
 	const [isOpenDrawerMenu, setOpenDrawerMenu] = useState(false);
-	const [open, setOpen] = useState(false);
+	const [openLoginDrawer, setOpenLoginDrawer] = useState(false);
+	const [openRegDrawer, setRegDrawer] = useState(false);
 	const handleOpenDrawerMenu = () => {
 		setOpenDrawerMenu(!isOpenDrawerMenu);
 	};
-	const handleClickOpen = () => {
-		setOpen((prev) => !prev);
+	const handleLoginOpen = () => {
+		setOpenLoginDrawer((prev) => !prev);
 	};
 
 	return (
@@ -25,13 +27,14 @@ const NavbarLandingPage: FunctionComponent<NavbarLandingPageProps> = () => {
 				<Toolbar>
 					<Stack gap={3} direction={"row"} justifyContent="space-between" alignItems={"center"} width={"100%"}>
 						<LandingPageLeftSideNavBar />
-						<LandingPageButtons showButtons={false} openLoginPageHandler={handleClickOpen} />
+						<LandingPageButtons showButtons={false} openLoginPageHandler={handleLoginOpen} />
 					</Stack>
 					<LandingPageHamburger handleOpenDrawer={handleOpenDrawerMenu} />
 				</Toolbar>
 			</Container>
 			<DrawerNavBar isOpenDrawer={isOpenDrawerMenu} handleOpenDrawer={handleOpenDrawerMenu} />
-			<LoginPage handleClickOpen={handleClickOpen} handleClose={handleClickOpen} open={open} />
+			<LoginPage handleClickOpen={handleLoginOpen} open={openLoginDrawer} />
+			{/* <RegistrationPage handleClickOpen={} open={false} /> */}
 		</AppBar>
 	);
 };

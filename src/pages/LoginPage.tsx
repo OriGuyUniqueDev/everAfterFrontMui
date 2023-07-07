@@ -43,7 +43,6 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 							onChange={formik.handleChange}
 							onBlur={formik.handleBlur}
 							required
-							autoFocus
 							margin="dense"
 							id="email"
 							label="Email Address"
