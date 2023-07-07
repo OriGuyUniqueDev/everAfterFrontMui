@@ -23,7 +23,7 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 					<Stack spacing={2} sx={{ mx: 10, my: 5 }}>
 						<TopSectionLogin />
 						<InputSectionLogin formik={formik} />
-						<ActionSectionLogin handleClickOpen={handleClickOpen} />
+						<ActionSectionLogin handleClickOpen={handleClickOpen} formik={formik} />
 					</Stack>
 				</form>
 			</Drawer>
