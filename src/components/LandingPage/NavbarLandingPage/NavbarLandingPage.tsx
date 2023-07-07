@@ -7,6 +7,8 @@ import LandingPageHamburger from "./components/LandingPageHamburger";
 import LandingPageLeftSideNavBar from "./components/LandingPageLeftSideNavBar";
 import LoginPage from "@/pages/LoginPage";
 import RegistrationPage from "@/pages/RegistrationPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface NavbarLandingPageProps {}
 
@@ -26,6 +28,7 @@ const NavbarLandingPage: FunctionComponent<NavbarLandingPageProps> = () => {
 
 	return (
 		<AppBar position="relative" sx={{ bgcolor: "transparent" }}>
+			<ToastContainer />
 			<Container maxWidth="xl">
 				<Toolbar>
 					<Stack gap={3} direction={"row"} justifyContent="space-between" alignItems={"center"} width={"100%"}>
