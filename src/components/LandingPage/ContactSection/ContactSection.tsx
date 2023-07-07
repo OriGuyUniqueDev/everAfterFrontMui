@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
+import RegistrationPage from "@/pages/RegistrationPage";
 import { Button, Stack, Typography } from "@mui/material";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import ContentWrapper from "../components/ContentWrapper";
 
 interface ContactSectionProps {}
 
 const ContactSection: FunctionComponent<ContactSectionProps> = () => {
+	const [showContactDrawer, setShowContactDrawer] = useState(false);
+	function handleShowContactDrawer() {
+		setShowContactDrawer((prev) => !prev);
+	}
 	return (
 		<ContentWrapper heightPercentage="60svh" alignItemsPosition={"center"}>
 			<Stack width={"100%"} justifyContent={"top"} alignItems={"center"}>
@@ -15,9 +20,10 @@ const ContactSection: FunctionComponent<ContactSectionProps> = () => {
 				<Typography marginBottom={10} fontSize={22} sx={{ textDecoration: "", textAlign: "center", width: "100%" }} variant="body1" color={"text.primary"}>
 					Join the EverAfter community and start planning your dream wedding today.{" "}
 				</Typography>
-				<Button sx={{ fontFamily: "Pacifico", width: "18rem", textTransform: "none", fontSize: 24 }} size={"small"} variant="contained" color="secondary">
+				<Button onClick={handleShowContactDrawer} sx={{ fontFamily: "Pacifico", width: "18rem", textTransform: "none", fontSize: 24 }} size={"small"} variant="contained" color="secondary">
 					Register
 				</Button>
+				<RegistrationPage handleClickOpen={handleShowContactDrawer} open={showContactDrawer} />
 			</Stack>
 		</ContentWrapper>
 	);

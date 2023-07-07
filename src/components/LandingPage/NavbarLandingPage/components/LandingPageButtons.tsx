@@ -6,9 +6,10 @@ import { FunctionComponent, useState } from "react";
 interface LandingPageButtonsProps {
 	showButtons: boolean;
 	openLoginPageHandler: () => void;
+	openRegPageHandler: () => void;
 }
 
-const LandingPageButtons: FunctionComponent<LandingPageButtonsProps> = ({ showButtons, openLoginPageHandler }) => {
+const LandingPageButtons: FunctionComponent<LandingPageButtonsProps> = ({ showButtons, openLoginPageHandler, openRegPageHandler }) => {
 	return (
 		<>
 			<Stack direction={"row"} gap={3} display={{ xs: showButtons ? "flex" : "none", md: "flex" }}>
@@ -16,7 +17,7 @@ const LandingPageButtons: FunctionComponent<LandingPageButtonsProps> = ({ showBu
 					Login
 				</Button>
 
-				<Button sx={{ width: "10rem", color: "#fff", outlineColor: "#fff", textTransform: "none", fontSize: 18 }} variant="outlined" size={"small"}>
+				<Button onClick={openRegPageHandler} sx={{ width: "10rem", color: "#fff", outlineColor: "#fff", textTransform: "none", fontSize: 18 }} variant="outlined" size={"small"}>
 					SignUp
 				</Button>
 			</Stack>

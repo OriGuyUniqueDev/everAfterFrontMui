@@ -9,7 +9,7 @@ const TopSectionLogin: FunctionComponent<TopSectionLoginProps> = () => {
 		<>
 			<Typography variant="h4">Lets Login 👋</Typography>
 			<Typography variant="body1" fontSize={20} color={"#fff"}>
-				Welcome, this is the first step to organize the wedding of your DREAMS{" "}
+				Welcome Back, Let's continue your journey to the wedding of your DREAMS{" "}
 			</Typography>
 		</>
 	);

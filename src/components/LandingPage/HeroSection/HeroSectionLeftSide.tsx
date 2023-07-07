@@ -1,11 +1,17 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Stack, Typography, Button } from "@mui/material";
+import RegistrationPage from "@/pages/RegistrationPage";
+import { HashLink as Link } from "react-router-hash-link";
 
 interface HeroSectionLeftSideProps {}
 
 const HeroSectionLeftSide: FunctionComponent<HeroSectionLeftSideProps> = () => {
+	const [showHeroDrawer, setShowHeroDrawer] = useState(false);
+	function handleShowContactDrawer() {
+		setShowHeroDrawer((prev) => !prev);
+	}
 	return (
 		<Grid xs={12} lg={6}>
 			<Stack alignItems={{ xs: "center", lg: "start" }} gap={8}>
@@ -28,13 +34,15 @@ const HeroSectionLeftSide: FunctionComponent<HeroSectionLeftSideProps> = () => {
 				</Stack>
 
 				<Stack direction={{ xs: "column", lg: "row" }} gap={1}>
-					<Button sx={{ fontFamily: "Pacifico", width: "13rem", textTransform: "none", fontSize: 18 }} size={"medium"} variant="contained" color="secondary">
+					<Button onClick={handleShowContactDrawer} sx={{ fontFamily: "Pacifico", width: "13rem", textTransform: "none", fontSize: 18 }} size={"medium"} variant="contained" color="secondary">
 						Start Planning
 					</Button>
-
-					<Button sx={{ width: "13rem", color: "#fff", outlineColor: "#fff", textTransform: "none", fontSize: 18 }} variant="outlined" size={"medium"}>
-						Discover EverAfter
-					</Button>
+					<RegistrationPage handleClickOpen={handleShowContactDrawer} open={showHeroDrawer} />
+					<Link to="/#feature">
+						<Button sx={{ width: "13rem", color: "#fff", outlineColor: "#fff", textTransform: "none", fontSize: 18 }} variant="outlined" size={"medium"}>
+							Discover EverAfter
+						</Button>
+					</Link>
 				</Stack>
 			</Stack>
 		</Grid>

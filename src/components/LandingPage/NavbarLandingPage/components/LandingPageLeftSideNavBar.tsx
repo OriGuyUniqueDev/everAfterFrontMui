@@ -2,6 +2,7 @@
 import { Stack, Typography } from "@mui/material";
 import { FunctionComponent } from "react";
 import { NavLink } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 interface LandingPageLeftSideNavBarProps {}
 
@@ -13,11 +14,11 @@ const LandingPageLeftSideNavBar: FunctionComponent<LandingPageLeftSideNavBarProp
 					EverAfter
 				</Typography>
 			</NavLink>
-			<NavLink to={"/#features"}>
+			<Link to={"/#feature"}>
 				<Typography fontFamily={"Abril Fatface"} color={"text.primary"} variant="body1" fontSize={18}>
 					Features
 				</Typography>
-			</NavLink>
+			</Link>
 			<NavLink to={"about"}>
 				<Typography fontFamily={"Abril Fatface"} color={"text.primary"} variant="body1" fontSize={18} display={{ xs: "none", md: "block" }}>
 					About

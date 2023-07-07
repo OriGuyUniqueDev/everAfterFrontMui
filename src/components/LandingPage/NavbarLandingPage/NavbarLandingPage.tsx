@@ -20,6 +20,9 @@ const NavbarLandingPage: FunctionComponent<NavbarLandingPageProps> = () => {
 	const handleLoginOpen = () => {
 		setOpenLoginDrawer((prev) => !prev);
 	};
+	const handleRegOpen = () => {
+		setRegDrawer((prev) => !prev);
+	};
 
 	return (
 		<AppBar position="relative" sx={{ bgcolor: "transparent" }}>
@@ -27,14 +30,14 @@ const NavbarLandingPage: FunctionComponent<NavbarLandingPageProps> = () => {
 				<Toolbar>
 					<Stack gap={3} direction={"row"} justifyContent="space-between" alignItems={"center"} width={"100%"}>
 						<LandingPageLeftSideNavBar />
-						<LandingPageButtons showButtons={false} openLoginPageHandler={handleLoginOpen} />
+						<LandingPageButtons showButtons={false} openLoginPageHandler={handleLoginOpen} openRegPageHandler={handleRegOpen} />
 					</Stack>
 					<LandingPageHamburger handleOpenDrawer={handleOpenDrawerMenu} />
 				</Toolbar>
 			</Container>
 			<DrawerNavBar isOpenDrawer={isOpenDrawerMenu} handleOpenDrawer={handleOpenDrawerMenu} />
 			<LoginPage handleClickOpen={handleLoginOpen} open={openLoginDrawer} />
-			{/* <RegistrationPage handleClickOpen={} open={false} /> */}
+			<RegistrationPage handleClickOpen={handleRegOpen} open={openRegDrawer} />
 		</AppBar>
 	);
 };
