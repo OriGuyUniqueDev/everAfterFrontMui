@@ -4,18 +4,50 @@ import InputSectionLogin from "@/components/LandingPage/LoginPageSection/InputSe
 import TopSectionLogin from "@/components/LandingPage/LoginPageSection/TopSectionLogin";
 import FormikLoginConfig from "@/configuration/FormikLoginConfig";
 import LoginDataType from "@/interfaces/LoginDataType";
+import LoginUserServerResType from "@/interfaces/LoginUserServerResType";
+import { errorMsg, successMsg } from "@/services/toastsMsg";
+import { login } from "@/services/userService";
 import { Stack, Drawer } from "@mui/material";
+import { AxiosError, AxiosResponse } from "axios";
 import { useFormik } from "formik";
-import { FunctionComponent } from "react";
+import React from "react";
+import { FunctionComponent, useState } from "react";
+import { useSignIn } from "react-auth-kit";
 import { ToastContainer } from "react-toastify";
+import * as yup from "yup";
 
 interface LoginPageProps {
-	handleClickOpen: () => void;
+	handleClickOpen: VoidFunction;
 	open: boolean;
 }
 
 const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open }) => {
-	const formik = useFormik<LoginDataType>(FormikLoginConfig);
+	const signIn = useSignIn();
+	const formik = useFormik<LoginDataType>({
+		initialValues: {
+			email: "",
+			password: "",
+		} as LoginDataType,
+		validationSchema: yup.object({
+			email: yup.string().required().email("Invalid Email"),
+			password: yup.string().required().min(6, "Too Short, Should be at least 6 characters"),
+		}),
+		async onSubmit(values: LoginDataType) {
+			try {
+				const res: LoginUserServerResType = await login(values);
+				signIn({
+					token: res.access_token,
+					expiresIn: 720,
+					tokenType: "Bearer",
+					authState: { email: res.email },
+				});
+				successMsg("welcome");
+			} catch (err) {
+				const error = err as AxiosError;
+				errorMsg(error.message);
+			}
+		},
+	});
 	return (
 		<>
 			<Drawer anchor={"bottom"} open={open} onClose={handleClickOpen}>
