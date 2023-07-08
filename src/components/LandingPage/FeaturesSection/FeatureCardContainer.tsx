@@ -14,7 +14,7 @@ const FeatureCardContainer: FunctionComponent<FeatureCardContainerProps> = ({ fe
 		<Grid justifyContent={"space-evenly"} spacing={10} alignItems={"stretch"} container>
 			{featureData.length > 0 ? (
 				featureData.map((featureCard) => {
-					return <FeatureCard cardHeader={featureCard.cardHeader} cardContent={featureCard.cardContent} imgSrc={featureCard.imgSrc} imgAlt={featureCard.imgAlt} />;
+					return <FeatureCard key={featureCard.cardHeader} cardHeader={featureCard.cardHeader} cardContent={featureCard.cardContent} imgSrc={featureCard.imgSrc} imgAlt={featureCard.imgAlt} />;
 				})
 			) : (
 				<Typography color={"error"}>Oops, no feature to show</Typography>

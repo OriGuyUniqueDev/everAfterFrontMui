@@ -3,6 +3,7 @@ import ActionSectionLogin from "@/components/LandingPage/LoginPageSection/Action
 import InputSectionLogin from "@/components/LandingPage/LoginPageSection/InputSectionLogin";
 import TopSectionLogin from "@/components/LandingPage/LoginPageSection/TopSectionLogin";
 import FormikLoginConfig from "@/configuration/FormikLoginConfig";
+import useDrawers from "@/hooks/useDrawers";
 import LoginDataType from "@/interfaces/LoginDataType";
 import LoginUserServerResType from "@/interfaces/LoginUserServerResType";
 import { errorMsg, successMsg } from "@/services/toastsMsg";
@@ -13,6 +14,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { FunctionComponent, useState } from "react";
 import { useSignIn } from "react-auth-kit";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import * as yup from "yup";
 
@@ -23,6 +25,7 @@ interface LoginPageProps {
 
 const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open }) => {
 	const signIn = useSignIn();
+	const navigate = useNavigate();
 	const formik = useFormik<LoginDataType>({
 		initialValues: {
 			email: "",
@@ -35,13 +38,15 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 		async onSubmit(values: LoginDataType) {
 			try {
 				const res: LoginUserServerResType = await login(values);
+				successMsg("welcome");
 				signIn({
 					token: res.access_token,
 					expiresIn: 720,
 					tokenType: "Bearer",
 					authState: { email: res.email },
 				});
-				successMsg("welcome");
+				navigate("/yourWedding");
+				handleClickOpen();
 			} catch (err) {
 				const error = err as AxiosError;
 				errorMsg(error.message);

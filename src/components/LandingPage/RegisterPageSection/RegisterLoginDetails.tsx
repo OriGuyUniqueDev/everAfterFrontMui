@@ -1,5 +1,5 @@
 import RegistrationDataType from "@/interfaces/RegistrationDataType";
-import { Stack, Typography, TextField, FormControlLabel, styled, Switch } from "@mui/material";
+import { Stack, Typography, TextField, FormControlLabel, styled, Switch, Checkbox } from "@mui/material";
 import { FormikProps } from "formik";
 import { FunctionComponent } from "react";
 
@@ -82,7 +82,31 @@ const RegisterLoginDetails: FunctionComponent<RegisterLoginDetailsProps> = ({ fo
 				helperText={formik.touched.password && formik.errors.password}
 			/>
 
-			<FormControlLabel control={<BusinessAccount checked={showBusinessReg} onChange={handleShowBusinessForm} />} label="Business Account" />
+			<FormControlLabel
+				required
+				control={
+					<Checkbox
+						onChange={() => {
+							formik.handleChange;
+							if (formik.values.businessAccount === false) {
+								formik.values.businessAccount = true;
+								formik.values.brideName = "";
+								formik.values.groomName = "";
+								formik.values.fullName = "";
+							} else {
+								formik.values.businessAccount = false;
+								formik.values.eventPannerName = "";
+							}
+						}}
+						onClick={handleShowBusinessForm}
+						value={formik.values.businessAccount}
+						name="businessAccount"
+						onBlur={formik.handleBlur}
+						id="businessAccount"
+					/>
+				}
+				label="Business Account?"
+			/>
 		</Stack>
 	);
 };
