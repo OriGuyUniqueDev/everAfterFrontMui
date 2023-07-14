@@ -2,8 +2,8 @@
 import { FunctionComponent, useState } from "react";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Stack, Typography, Button } from "@mui/material";
-import RegistrationPage from "@/pages/RegistrationPage";
 import { HashLink as Link } from "react-router-hash-link";
+import RegistrationPage from "@/pages/RegistrationPage";
 
 interface HeroSectionLeftSideProps {}
 

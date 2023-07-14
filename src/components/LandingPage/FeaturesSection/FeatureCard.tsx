@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { FunctionComponent } from "react";
-import Grid from "@mui/material/Unstable_Grid2";
 import { Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 
 interface FeatureCardProps {
 	cardHeader: string;

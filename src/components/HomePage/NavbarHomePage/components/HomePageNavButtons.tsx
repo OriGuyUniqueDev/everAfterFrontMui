@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { FunctionComponent } from "react";
 import { useSignOut } from "react-auth-kit";
 

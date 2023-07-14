@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { FunctionComponent } from "react";
 import Grid from "@mui/material/Unstable_Grid2";
-import FeatureCardType from "@/interfaces/FeatureCardType";
-import FeatureCard from "./FeatureCard";
 import { Typography } from "@mui/material";
+import FeatureCard from "./FeatureCard";
+import FeatureCardType from "@/interfaces/FeatureCardType";
 
 interface FeatureCardContainerProps {
 	featureData: FeatureCardType[];

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { Typography } from "@mui/material";
 import { FunctionComponent } from "react";
-import ContentWrapper from "../components/ContentWrapper";
 import Grid from "@mui/material/Unstable_Grid2";
 import StarIcon from "@mui/icons-material/Star";
+import ContentWrapper from "../components/ContentWrapper";
 
 interface AboutSectionProps {}
 
