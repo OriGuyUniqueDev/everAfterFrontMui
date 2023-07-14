@@ -78,7 +78,7 @@ const RegistrationPage: FunctionComponent<RegistrationPageProps> = ({ handleClic
 					tokenType: "Bearer",
 					authState: { email: res.email },
 				});
-				navigate("/yourWedding");
+				navigate("/MyEverAfter");
 				handleClickOpen();
 			} catch (err) {
 				const error = err as AxiosError;

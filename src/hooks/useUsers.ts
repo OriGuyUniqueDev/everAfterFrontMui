@@ -1,9 +1,19 @@
+import UserFromServerType from "@/interfaces/UserFromServerType";
 import { getAllUsers, getUser } from "@/services/userService";
 import { useState } from "react";
 import { AuthStateUserObject } from "react-auth-kit/dist/types";
 
 const useUsers = (userEmail: AuthStateUserObject | string | null) => {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<UserFromServerType>({
+		_id: "",
+		fullName: "",
+		businessAccount: false,
+		brideName: "",
+		groomName: "",
+		typeOfUser: "",
+		eventPannerName: "",
+		email: "",
+	});
 	const [users, setUsers] = useState(null);
 	const [isLoading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -18,7 +28,16 @@ const useUsers = (userEmail: AuthStateUserObject | string | null) => {
 		} catch (error) {
 			setLoading(false);
 			setError(error);
-			setUser(null);
+			setUser({
+				_id: "",
+				fullName: "",
+				businessAccount: false,
+				brideName: "",
+				groomName: "",
+				typeOfUser: "",
+				eventPannerName: "",
+				email: "",
+			});
 		}
 	};
 	const handleGetAllUsers = async () => {
@@ -31,7 +50,16 @@ const useUsers = (userEmail: AuthStateUserObject | string | null) => {
 		} catch (error) {
 			setLoading(false);
 			setError(error);
-			setUser(null);
+			setUser({
+				_id: "",
+				fullName: "",
+				businessAccount: false,
+				brideName: "",
+				groomName: "",
+				typeOfUser: "",
+				eventPannerName: "",
+				email: "",
+			});
 		}
 	};
 	return {

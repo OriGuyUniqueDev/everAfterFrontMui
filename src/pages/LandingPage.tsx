@@ -7,12 +7,21 @@ import NavbarLandingPage from "@/components/LandingPage/NavbarLandingPage/Navbar
 import useDrawers from "@/hooks/useDrawers";
 import { Functions } from "@mui/icons-material";
 import React, { FunctionComponent, useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { useIsAuthenticated } from "react-auth-kit";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 interface LandingPageProps {}
 
 const LandingPage: FunctionComponent<LandingPageProps> = () => {
+	const isAuthenticated = useIsAuthenticated();
+	const navigate = useNavigate();
+	useEffect(() => {
+		if (isAuthenticated()) {
+			navigate("/MyEverAfter");
+		}
+	}, []);
+
 	return (
 		<>
 			<HeroSection />

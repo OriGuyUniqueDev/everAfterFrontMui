@@ -1,4 +1,3 @@
-import { ThemeProvider } from "@emotion/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -13,38 +12,13 @@ import useDrawers from "./hooks/useDrawers";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./router/Router";
 import Layout from "./layout/Layout";
-
-// const router = createBrowserRouter([
-// 	{
-// 		path: "/",
-// 		element: <LandingPage />,
-// 		children: [
-// 			{
-// 				path: "/",
-// 				element: <LandingPageHome />,
-// 			},
-// 			{
-// 				path: "about",
-// 				element: <AboutSection />,
-// 			},
-// 			{
-// 				path: "login",
-// 				element: <LoginPage handleClickOpen={} open={false} />,
-// 			},
-// 		],
-// 	},
-// 	{
-// 		path: "/yourWedding",
-// 		element: (
-// 			<RequireAuth loginPath={"/"}>
-// 				<HomePage />
-// 			</RequireAuth>
-// 		),
-// 	},
-// ]);
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { ThemeProvider } from "@mui/material/styles";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-	<React.StrictMode>
+	// <React.StrictMode>
+	<LocalizationProvider dateAdapter={AdapterDateFns}>
 		<AuthProvider authType={"localstorage"} authName={"everAfterAuth"} cookieDomain={window.location.hostname} cookieSecure={false}>
 			<ThemeProvider theme={theme}>
 				<BrowserRouter>
@@ -54,5 +28,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 				</BrowserRouter>
 			</ThemeProvider>
 		</AuthProvider>
-	</React.StrictMode>
+	</LocalizationProvider>
+	// </React.StrictMode>
 );

@@ -40,16 +40,16 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 			try {
 				setLoading(true);
 				const res: LoginUserServerResType = await login(values);
-				successMsg("welcome");
 				signIn({
 					token: res.access_token,
 					expiresIn: 720,
 					tokenType: "Bearer",
 					authState: { email: res.email },
 				});
+				successMsg("welcome");
 				setLoading(false);
-				navigate("/yourWedding");
 				handleClickOpen();
+				navigate("/MyEverAfter");
 			} catch (err) {
 				setLoading(true);
 				const error = err as AxiosError;
