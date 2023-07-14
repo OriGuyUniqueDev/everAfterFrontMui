@@ -1,15 +1,16 @@
 import LoginDataType from "@/interfaces/LoginDataType";
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { errorMsg, successMsg } from "./toastsMsg";
-import { useSignIn } from "react-auth-kit";
+import { useAuthHeader, useSignIn } from "react-auth-kit";
 import RegistrationDataType from "@/interfaces/RegistrationDataType";
+import { AuthStateUserObject } from "react-auth-kit/dist/types";
 
 const api = axios.create({
 	baseURL: import.meta.env.VITE_SERVER_URL,
 	headers: {
 		"Content-Type": "application/json",
 		Accept: "application/json",
-		Authorization: `Bearer ${localStorage.getItem("everAfter")}`,
+		Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 	},
 });
 
@@ -21,7 +22,25 @@ export async function login(userData: LoginDataType) {
 }
 export async function register(userData: RegistrationDataType) {
 	return await api
-		.post("/registerMe", userData)
+		.post("/users/registerMe", userData)
 		.then((res) => res.data)
 		.then((err) => err);
+}
+export async function getUser(userEmail: AuthStateUserObject | string | null) {
+	try {
+		const { data } = await api.get(`users/${userEmail}`);
+		console.log(data);
+
+		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
+}
+export async function getAllUsers() {
+	try {
+		const { data } = await api.get(`users`);
+		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
 }

@@ -27,7 +27,9 @@ const Router: FunctionComponent<RouterProps> = () => {
 						<HomePage />
 					</RequireAuth>
 				}
-			/>
+			>
+				<Route path="guests" />
+			</Route>
 		</Routes>
 	);
 };

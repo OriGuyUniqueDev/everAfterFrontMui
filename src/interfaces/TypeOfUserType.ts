@@ -1,5 +1,5 @@
 export enum TypeOfUserType {
-	admin,
-	business,
-	private,
+	Admin = "admin",
+	Business = "business",
+	Private = "private",
 }

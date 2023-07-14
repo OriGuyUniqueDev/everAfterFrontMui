@@ -26,6 +26,7 @@ interface LoginPageProps {
 const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open }) => {
 	const signIn = useSignIn();
 	const navigate = useNavigate();
+	const [isLoading, setLoading] = useState(false);
 	const formik = useFormik<LoginDataType>({
 		initialValues: {
 			email: "",
@@ -37,6 +38,7 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 		}),
 		async onSubmit(values: LoginDataType) {
 			try {
+				setLoading(true);
 				const res: LoginUserServerResType = await login(values);
 				successMsg("welcome");
 				signIn({
@@ -45,11 +47,14 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 					tokenType: "Bearer",
 					authState: { email: res.email },
 				});
+				setLoading(false);
 				navigate("/yourWedding");
 				handleClickOpen();
 			} catch (err) {
+				setLoading(true);
 				const error = err as AxiosError;
 				errorMsg(error.message);
+				setLoading(false);
 			}
 		},
 	});
@@ -60,7 +65,7 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 					<Stack spacing={2} sx={{ mx: 10, my: 5 }}>
 						<TopSectionLogin />
 						<InputSectionLogin formik={formik} />
-						<ActionSectionLogin handleClickOpen={handleClickOpen} formik={formik} />
+						<ActionSectionLogin isLoading={isLoading} handleClickOpen={handleClickOpen} formik={formik} />
 					</Stack>
 				</form>
 			</Drawer>

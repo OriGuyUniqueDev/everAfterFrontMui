@@ -7,7 +7,7 @@ export function successMsg(msg: string) {
 		theme: "dark",
 	});
 }
-export function errorMsg(msg: string) {
+export function errorMsg(msg: string | undefined) {
 	toast.error(msg, {
 		position: "bottom-center",
 		autoClose: 3000,

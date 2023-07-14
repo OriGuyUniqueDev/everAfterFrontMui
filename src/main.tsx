@@ -45,7 +45,7 @@ import Layout from "./layout/Layout";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
-		<AuthProvider authType={"cookie"} authName={"everAfterAuth"} cookieDomain={window.location.hostname} cookieSecure={false}>
+		<AuthProvider authType={"localstorage"} authName={"everAfterAuth"} cookieDomain={window.location.hostname} cookieSecure={false}>
 			<ThemeProvider theme={theme}>
 				<BrowserRouter>
 					<Layout>

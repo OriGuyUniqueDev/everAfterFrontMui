@@ -36,15 +36,13 @@ const RegistrationPage: FunctionComponent<RegistrationPageProps> = ({ handleClic
 			eventPannerName: "",
 			fullName: "",
 			groomName: "",
-			// typeOfUser: TypeOfUserType.private,
+			typeOfUser: TypeOfUserType.Private,
 		} as RegistrationDataType,
 		validationSchema: yup.object().shape({
 			email: yup.string().required().email("Invalid Email"),
 			password: yup.string().required().min(6, "Too Short, Should be at least 6 characters"),
 			businessAccount: yup.boolean().required(),
 			brideName: yup.string().when("businessAccount", ([businessAccount]) => {
-				console.log(businessAccount);
-
 				if (businessAccount) return yup.string().oneOf([""]);
 				return yup.string().required().min(2, "Too Short, Should be at least 2 characters");
 			}),
@@ -63,6 +61,14 @@ const RegistrationPage: FunctionComponent<RegistrationPageProps> = ({ handleClic
 			// typeOfUser: yup.string().equals([TypeOfUserType]).required(),
 		}),
 		async onSubmit(values: RegistrationDataType) {
+			const valuesToRegister = values;
+			if (valuesToRegister.businessAccount === true) {
+				valuesToRegister.typeOfUser = TypeOfUserType.Business;
+			} else {
+				valuesToRegister.typeOfUser = TypeOfUserType.Private;
+			}
+			console.log(valuesToRegister);
+
 			try {
 				const res: LoginUserServerResType = await register(values);
 				successMsg("welcome");
@@ -76,7 +82,7 @@ const RegistrationPage: FunctionComponent<RegistrationPageProps> = ({ handleClic
 				handleClickOpen();
 			} catch (err) {
 				const error = err as AxiosError;
-				errorMsg(error.message);
+				errorMsg(`${error.response?.data.message}`);
 			}
 		},
 	});

@@ -1,4 +1,5 @@
 import RegistrationDataType from "@/interfaces/RegistrationDataType";
+import { TypeOfUserType } from "@/interfaces/TypeOfUserType";
 import { Stack, Typography, TextField, FormControlLabel, styled, Switch, Checkbox } from "@mui/material";
 import { FormikProps } from "formik";
 import { FunctionComponent } from "react";
@@ -83,18 +84,19 @@ const RegisterLoginDetails: FunctionComponent<RegisterLoginDetailsProps> = ({ fo
 			/>
 
 			<FormControlLabel
-				required
 				control={
 					<Checkbox
 						onChange={() => {
 							formik.handleChange;
 							if (formik.values.businessAccount === false) {
 								formik.values.businessAccount = true;
+								formik.values.typeOfUser = TypeOfUserType.Business;
 								formik.values.brideName = "";
 								formik.values.groomName = "";
 								formik.values.fullName = "";
 							} else {
 								formik.values.businessAccount = false;
+								formik.values.typeOfUser = TypeOfUserType.Business;
 								formik.values.eventPannerName = "";
 							}
 						}}
