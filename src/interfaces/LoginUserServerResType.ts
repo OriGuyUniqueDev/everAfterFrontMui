@@ -6,4 +6,5 @@ export default interface LoginUserServerResType {
 	email: string;
 	id: string;
 	typeOfUser: TypeOfUserType;
+	eventUser: string;
 }

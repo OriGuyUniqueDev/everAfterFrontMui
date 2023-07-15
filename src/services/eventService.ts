@@ -4,6 +4,8 @@ import { errorMsg, successMsg } from "./toastsMsg";
 import { useAuthHeader, useSignIn } from "react-auth-kit";
 import RegistrationDataType from "@/interfaces/RegistrationDataType";
 import { AuthStateUserObject } from "react-auth-kit/dist/types";
+import EventToServerType from "@/interfaces/EventToServerType";
+import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
 
 const api = axios.create({
 	baseURL: import.meta.env.VITE_SERVER_URL,
@@ -13,31 +15,20 @@ const api = axios.create({
 		Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 	},
 });
-
-export async function login(userData: LoginDataType) {
+export async function createEvent(eventData: RegisterNewUserEventType) {
 	return await api
-		.post("/login", userData)
+		.post("events", eventData)
 		.then((res) => res.data)
 		.then((err) => err);
 }
-export async function register(userData: RegistrationDataType) {
-	return await api
-		.post("/users/registerMe", userData)
-		.then((res) => res.data)
-		.then((err) => err);
-}
-export async function getUser(userEmail: AuthStateUserObject | string | null) {
+export async function getEvent(eventId: AuthStateUserObject | string | null, user: UserFromServerType) {
 	try {
-		const { data } = await api.get(`users/${userEmail}`);
+		const { data } = await api.get(`events/${eventId}`, {
+			params: {
+				email: user.email,
+			},
+		});
 
-		return data;
-	} catch (err) {
-		return Promise.reject(err.message);
-	}
-}
-export async function getAllUsers() {
-	try {
-		const { data } = await api.get(`users`);
 		return data;
 	} catch (err) {
 		return Promise.reject(err.message);

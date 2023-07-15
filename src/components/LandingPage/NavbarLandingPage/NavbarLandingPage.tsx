@@ -19,25 +19,47 @@ const NavbarLandingPage: FunctionComponent<NavbarLandingPageProps> = () => {
 	const { pathname } = useLocation();
 	useEffect(() => {
 		if (pathname === "/welcomeBackLetsLogin") {
-			console.log(pathname);
 			functions.openLoginSection();
 		}
 	}, [pathname]);
 	return (
-		<AppBar position="relative" sx={{ bgcolor: "transparent" }}>
+		<AppBar
+			position="relative"
+			sx={{ bgcolor: "transparent" }}
+		>
 			<ToastContainer />
 			<Container maxWidth="xl">
 				<Toolbar>
-					<Stack gap={3} direction={"row"} justifyContent="space-between" alignItems={"center"} width={"100%"}>
+					<Stack
+						gap={3}
+						direction={"row"}
+						justifyContent="space-between"
+						alignItems={"center"}
+						width={"100%"}
+					>
 						<LandingPageLeftSideNavBar />
-						<LandingPageButtons showButtons={false} openLoginPageHandler={functions.openLoginSection} openRegPageHandler={functions.openRegistrationDrawer} />
+						<LandingPageButtons
+							showButtons={false}
+							openLoginPageHandler={functions.openLoginSection}
+							openRegPageHandler={functions.openRegistrationDrawer}
+						/>
 					</Stack>
 					<LandingPageHamburger handleOpenDrawer={functions.openMenu} />
 				</Toolbar>
 			</Container>
-			<DrawerNavBar isOpenDrawer={useStates.openMenu.isOpenDrawerMenu} handleOpenDrawer={functions.openMenu} openRegPageHandler={functions.openRegistrationDrawer} />
-			<LoginPage handleClickOpen={functions.openLoginSection} open={useStates.openLoginSection.openLoginDrawer} />
-			<RegistrationPage handleClickOpen={functions.openRegistrationDrawer} open={useStates.openRegistrationDrawer.openRegDrawer} />
+			<DrawerNavBar
+				isOpenDrawer={useStates.openMenu.isOpenDrawerMenu}
+				handleOpenDrawer={functions.openMenu}
+				openRegPageHandler={functions.openRegistrationDrawer}
+			/>
+			<LoginPage
+				handleClickOpen={functions.openLoginSection}
+				open={useStates.openLoginSection.openLoginDrawer}
+			/>
+			<RegistrationPage
+				handleClickOpen={functions.openRegistrationDrawer}
+				open={useStates.openRegistrationDrawer.openRegDrawer}
+			/>
 		</AppBar>
 	);
 };

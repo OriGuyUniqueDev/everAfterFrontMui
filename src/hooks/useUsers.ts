@@ -13,6 +13,7 @@ const useUsers = (userEmail: AuthStateUserObject | string | null) => {
 		typeOfUser: "",
 		eventPannerName: "",
 		email: "",
+		eventData: "",
 	});
 	const [users, setUsers] = useState(null);
 	const [isLoading, setLoading] = useState(true);
@@ -37,6 +38,7 @@ const useUsers = (userEmail: AuthStateUserObject | string | null) => {
 				typeOfUser: "",
 				eventPannerName: "",
 				email: "",
+				eventData: "",
 			});
 		}
 	};
@@ -59,6 +61,7 @@ const useUsers = (userEmail: AuthStateUserObject | string | null) => {
 				typeOfUser: "",
 				eventPannerName: "",
 				email: "",
+				eventData: "",
 			});
 		}
 	};

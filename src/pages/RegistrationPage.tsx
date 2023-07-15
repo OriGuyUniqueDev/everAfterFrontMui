@@ -5,11 +5,12 @@ import RegisterLoginDetails from "@/components/LandingPage/RegisterPageSection/R
 import RegisterPrivateForm from "@/components/LandingPage/RegisterPageSection/RegisterPrivateForm";
 import RegisterTopSection from "@/components/LandingPage/RegisterPageSection/RegisterTopSection";
 import FormikRegistrationConfig from "@/configuration/FormikRegistrationConfig";
+import LoginDataType from "@/interfaces/LoginDataType";
 import LoginUserServerResType from "@/interfaces/LoginUserServerResType";
 import RegistrationDataType from "@/interfaces/RegistrationDataType";
 import { TypeOfUserType } from "@/interfaces/TypeOfUserType";
 import { errorMsg, successMsg } from "@/services/toastsMsg";
-import { register } from "@/services/userService";
+import { login, register } from "@/services/userService";
 import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Paper, Typography, Backdrop, Box, Fade, Modal, SxProps, Stack, Drawer, styled, Switch, FormControlLabel, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { AxiosError } from "axios";
 import { useFormik } from "formik";
@@ -37,10 +38,12 @@ const RegistrationPage: FunctionComponent<RegistrationPageProps> = ({ handleClic
 			fullName: "",
 			groomName: "",
 			typeOfUser: TypeOfUserType.Private,
+			eventData: "No Event Connected",
 		} as RegistrationDataType,
 		validationSchema: yup.object().shape({
 			email: yup.string().required().email("Invalid Email"),
 			password: yup.string().required().min(6, "Too Short, Should be at least 6 characters"),
+			eventData: yup.string().notRequired(),
 			businessAccount: yup.boolean().required(),
 			brideName: yup.string().when("businessAccount", ([businessAccount]) => {
 				if (businessAccount) return yup.string().oneOf([""]);
@@ -67,19 +70,23 @@ const RegistrationPage: FunctionComponent<RegistrationPageProps> = ({ handleClic
 			} else {
 				valuesToRegister.typeOfUser = TypeOfUserType.Private;
 			}
-			console.log(valuesToRegister);
 
 			try {
 				const res: LoginUserServerResType = await register(values);
-				successMsg("welcome");
+				const loginData: LoginDataType = {
+					email: res.email,
+					password: values.password,
+				};
+				const res2: LoginUserServerResType = await login(loginData);
 				signIn({
-					token: res.access_token,
+					token: res2.access_token,
 					expiresIn: 720,
 					tokenType: "Bearer",
-					authState: { email: res.email },
+					authState: { email: res2.email, id: res2.id, typeOfUser: res2.typeOfUser, eventUser: res2.eventUser },
 				});
-				navigate("/MyEverAfter");
 				handleClickOpen();
+				successMsg("welcome");
+				navigate("/MyEverAfter");
 			} catch (err) {
 				const error = err as AxiosError;
 				errorMsg(`${error.response?.data.message}`);
@@ -93,15 +100,32 @@ const RegistrationPage: FunctionComponent<RegistrationPageProps> = ({ handleClic
 
 	return (
 		<>
-			<Drawer anchor={"bottom"} open={open} onClose={handleClickOpen}>
+			<Drawer
+				anchor={"bottom"}
+				open={open}
+				onClose={handleClickOpen}
+			>
 				<form onSubmit={formik.handleSubmit}>
-					<Stack spacing={2} sx={{ mx: 10, my: 5 }}>
+					<Stack
+						spacing={2}
+						sx={{ mx: 10, my: 5 }}
+					>
 						<RegisterTopSection />
-						<Stack spacing={2} direction={{ xs: "column", lg: "row" }}>
-							<RegisterLoginDetails formik={formik} showBusinessReg={showBusinessReg} handleShowBusinessForm={handleShowBusinessForm} />
+						<Stack
+							spacing={2}
+							direction={{ xs: "column", lg: "row" }}
+						>
+							<RegisterLoginDetails
+								formik={formik}
+								showBusinessReg={showBusinessReg}
+								handleShowBusinessForm={handleShowBusinessForm}
+							/>
 							{showBusinessReg ? <RegisterBusinessForm formik={formik} /> : <RegisterPrivateForm formik={formik} />}
 						</Stack>
-						<RegisterButtonsForm formik={formik} handleClickOpen={handleClickOpen} />
+						<RegisterButtonsForm
+							formik={formik}
+							handleClickOpen={handleClickOpen}
+						/>
 					</Stack>
 				</form>
 			</Drawer>

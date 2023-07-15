@@ -7,4 +7,5 @@ export default interface UserFromServerType {
 	typeOfUser: string;
 	eventPannerName: string;
 	email: string;
+	eventData: string;
 }

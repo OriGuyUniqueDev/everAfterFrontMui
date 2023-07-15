@@ -44,7 +44,7 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 					token: res.access_token,
 					expiresIn: 720,
 					tokenType: "Bearer",
-					authState: { email: res.email },
+					authState: { email: res.email, id: res.id, typeOfUser: res.typeOfUser, eventUser: res.eventUser },
 				});
 				successMsg("welcome");
 				setLoading(false);
@@ -60,12 +60,23 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 	});
 	return (
 		<>
-			<Drawer anchor={"bottom"} open={open} onClose={handleClickOpen}>
+			<Drawer
+				anchor={"bottom"}
+				open={open}
+				onClose={handleClickOpen}
+			>
 				<form onSubmit={formik.handleSubmit}>
-					<Stack spacing={2} sx={{ mx: 10, my: 5 }}>
+					<Stack
+						spacing={2}
+						sx={{ mx: 10, my: 5 }}
+					>
 						<TopSectionLogin />
 						<InputSectionLogin formik={formik} />
-						<ActionSectionLogin isLoading={isLoading} handleClickOpen={handleClickOpen} formik={formik} />
+						<ActionSectionLogin
+							isLoading={isLoading}
+							handleClickOpen={handleClickOpen}
+							formik={formik}
+						/>
 					</Stack>
 				</form>
 			</Drawer>

@@ -9,4 +9,5 @@ export default interface RegistrationDataType {
 	fullName: string;
 	brideName: string;
 	groomName: string;
+	eventData: string;
 }
