@@ -6,6 +6,7 @@ import RegistrationDataType from "@/interfaces/RegistrationDataType";
 import { AuthStateUserObject } from "react-auth-kit/dist/types";
 import EventToServerType from "@/interfaces/EventToServerType";
 import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
+import UserFromServerType from "@/interfaces/UserFromServerType";
 
 const api = axios.create({
 	baseURL: import.meta.env.VITE_SERVER_URL,
@@ -24,7 +25,7 @@ export async function createEvent(eventData: RegisterNewUserEventType) {
 export async function getEvent(eventId: AuthStateUserObject | string | null, user: UserFromServerType) {
 	try {
 		const { data } = await api.get(`events/${eventId}`, {
-			params: {
+			data: {
 				email: user.email,
 			},
 		});

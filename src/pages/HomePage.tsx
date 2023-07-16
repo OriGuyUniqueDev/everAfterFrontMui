@@ -1,22 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
+import { Box, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import ContentWrapper from "@/components/LandingPage/components/ContentWrapper";
 import useUsers from "@/hooks/useUsers";
 import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
 import { createEvent } from "@/services/eventService";
-import { CheckBox, Label } from "@mui/icons-material";
-import { Box, Button, Checkbox, CircularProgress, FormControlLabel, Stack, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material";
-import { DateField, DatePicker } from "@mui/x-date-pickers";
 import { AxiosError } from "axios";
-import { startOfDay } from "date-fns";
-import enGB from "date-fns/locale/en-GB";
-import { Dayjs } from "dayjs";
 import { useFormik } from "formik";
 import { FunctionComponent, useEffect, useState } from "react";
 import { useAuthUser } from "react-auth-kit";
 import * as yup from "yup";
 import { errorMsg, successMsg } from "@/services/toastsMsg";
 import WelcomeMyEverAfter from "@/components/HomePage/MyEverAfter/WelcomeMyEverAfter";
-import CreateEventInputs from "@/components/HomePage/MyEverAfter/CreateEventInputs";
 import CreateEventForm from "@/components/HomePage/MyEverAfter/CreateEventForm";
 import useEvents from "@/hooks/useEvents";
 
@@ -28,7 +22,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
 	const data = auth();
 	const { handleGetOneUser, user, isLoading } = useUsers(data!.email);
-	const { event, handleGetOneEvent } = useEvents(user.eventData, user);
+	const { event, handleGetOneEvent } = useEvents(data!.eventUser, user);
 
 	const formik = useFormik({
 		initialValues: {
@@ -104,8 +98,30 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								<TableCell>est Guest List</TableCell>
-								<TableCell>{event.numOfGuest}</TableCell>
+								<TableRow>
+									<TableCell>est Guest List</TableCell>
+									<TableCell>{event.numOfGuest}</TableCell>
+								</TableRow>
+								<TableRow>
+									<TableCell>Budget</TableCell>
+									<TableCell>{event.budget}</TableCell>
+								</TableRow>
+								<TableRow>
+									<TableCell>Date Of Wedding</TableCell>
+									<TableCell>{event.dateOfWedding}</TableCell>
+								</TableRow>
+								<TableRow>
+									<TableCell>Location</TableCell>
+									<TableCell>{event.venueName}</TableCell>
+								</TableRow>
+								<TableRow>
+									<TableCell>Days Left</TableCell>
+									<TableCell>{event.venueName}</TableCell>
+								</TableRow>
+								<TableRow>
+									<TableCell>Event Planner</TableCell>
+									<TableCell>{event.eventPlanner}</TableCell>
+								</TableRow>
 							</TableBody>
 						</Table>
 					</Box>

@@ -40,6 +40,7 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 			try {
 				setLoading(true);
 				const res: LoginUserServerResType = await login(values);
+
 				signIn({
 					token: res.access_token,
 					expiresIn: 720,

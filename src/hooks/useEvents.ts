@@ -25,7 +25,6 @@ const useEvents = (eventId: AuthStateUserObject | string | null, user: UserFromS
 	const handleGetOneEvent = async () => {
 		try {
 			setLoading(true);
-			console.log(eventId);
 			const event = await getEvent(eventId, user);
 
 			setLoading(false);
