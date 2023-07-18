@@ -2,13 +2,13 @@
 import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
 import { Stack, TextField, FormControlLabel, Checkbox, Button, CircularProgress, Typography } from "@mui/material";
 import { DateField } from "@mui/x-date-pickers";
-import { startOfDay } from "date-fns";
 import { FormikProps } from "formik";
+import moment, { Moment } from "moment";
 import { FunctionComponent } from "react";
 
 interface CreateEventInputsProps {
 	formik: FormikProps<RegisterNewUserEventType>;
-	value: dateFns | undefined;
+	value: Moment | Date | undefined;
 	isLoadingCreateEvent: boolean;
 }
 
@@ -49,7 +49,7 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 							break;
 					}
 				}}
-				minDate={startOfDay(new Date())}
+				minDate={moment().calendar()}
 				sx={{ width: "20rem" }}
 				onChange={(newValue) => {
 					formik.setFieldValue("dateOfWedding", newValue, false);

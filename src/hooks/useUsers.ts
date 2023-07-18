@@ -68,6 +68,7 @@ const useUsers = (userEmail: AuthStateUserObject | string | null) => {
 	return {
 		handleGetOneUser,
 		handleGetAllUsers,
+		setUser,
 		user,
 		isLoading,
 		error,

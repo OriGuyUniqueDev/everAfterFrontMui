@@ -1,33 +1,38 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { Box, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
-import ContentWrapper from "@/components/LandingPage/components/ContentWrapper";
-import useUsers from "@/hooks/useUsers";
-import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
+import Stack from "@mui/material/Stack";
 import { createEvent } from "@/services/eventService";
 import { AxiosError } from "axios";
 import { useFormik } from "formik";
 import { FunctionComponent, useEffect, useState } from "react";
-import { useAuthUser } from "react-auth-kit";
-import * as yup from "yup";
+import { useAuthUser, useSignIn } from "react-auth-kit";
 import { errorMsg, successMsg } from "@/services/toastsMsg";
+import ContentWrapper from "@/components/LandingPage/components/ContentWrapper";
+import useUsers from "@/hooks/useUsers";
+import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
 import WelcomeMyEverAfter from "@/components/HomePage/MyEverAfter/WelcomeMyEverAfter";
 import CreateEventForm from "@/components/HomePage/MyEverAfter/CreateEventForm";
-import useEvents from "@/hooks/useEvents";
+import * as yup from "yup";
+import MyEverAfterCard from "@/components/HomePage/MyEverAfter/MyEverAfterCard";
+import { createRefresh } from "react-auth-kit";
+import { useAuthHeader } from "react-auth-kit";
+
+import { Moment } from "moment";
 
 interface HomePageProps {}
 
 const HomePage: FunctionComponent<HomePageProps> = () => {
 	const auth = useAuthUser();
-	const [value, setValue] = useState<dateFns | undefined>(undefined);
+	const [value, setValue] = useState<Moment | Date | undefined>(undefined);
 	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
 	const data = auth();
 	const { handleGetOneUser, user, isLoading } = useUsers(data!.email);
-	const { event, handleGetOneEvent } = useEvents(data!.eventUser, user);
 
 	const formik = useFormik({
 		initialValues: {
 			numOfGuest: "",
-			eventUser: data.id,
+			eventUser: data!.id,
 			hasVenue: false,
 			dateOfWedding: value,
 			eventPlanner: "",
@@ -52,9 +57,9 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 			try {
 				setLoadingCreateEvent(true);
 				const res = await createEvent(values);
+
 				successMsg("Event Created");
 				handleGetOneUser();
-				handleGetOneEvent();
 				setLoadingCreateEvent(false);
 			} catch (err) {
 				const error = err as AxiosError;
@@ -66,7 +71,6 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 
 	useEffect(() => {
 		handleGetOneUser();
-		handleGetOneEvent();
 	}, []);
 
 	return (
@@ -85,46 +89,23 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 			) : (
 				<Stack width={"100%"}>
 					<WelcomeMyEverAfter user={user} />
-					<Box>
-						<Typography variant="h5">My EverAfter</Typography>
-						<Typography variant="h5">
-							The Wedding of {user.brideName} {user.groomName}
-						</Typography>
-						<Table>
-							<TableHead>
-								<TableRow>
-									<TableCell>Category</TableCell>
-									<TableCell>Info</TableCell>
-								</TableRow>
-							</TableHead>
-							<TableBody>
-								<TableRow>
-									<TableCell>est Guest List</TableCell>
-									<TableCell>{event.numOfGuest}</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell>Budget</TableCell>
-									<TableCell>{event.budget}</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell>Date Of Wedding</TableCell>
-									<TableCell>{event.dateOfWedding}</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell>Location</TableCell>
-									<TableCell>{event.venueName}</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell>Days Left</TableCell>
-									<TableCell>{event.venueName}</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell>Event Planner</TableCell>
-									<TableCell>{event.eventPlanner}</TableCell>
-								</TableRow>
-							</TableBody>
-						</Table>
-					</Box>
+					<Stack
+						gap={6}
+						direction="row"
+						width={"100%"}
+						justifyContent={"center"}
+						marginTop={4}
+					>
+						<MyEverAfterCard user={user} />
+						{/* <MyEverAfterCard
+							user={user}
+							event={event}
+						/>
+						<MyEverAfterCard
+							user={user}
+							event={event}
+						/> */}
+					</Stack>
 				</Stack>
 			)}
 		</ContentWrapper>

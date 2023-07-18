@@ -1,14 +1,13 @@
 import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
-import { Stack, TextField, FormControlLabel, Checkbox, Button, CircularProgress, Typography } from "@mui/material";
-import { DateField } from "@mui/x-date-pickers";
-import { startOfDay } from "date-fns";
+import Stack from "@mui/material/Stack";
 import { FormikProps } from "formik";
+import { Moment } from "moment";
 import { FunctionComponent } from "react";
 import CreateEventInputs from "./CreateEventInputs";
 
 interface CreateEventFormProps {
 	formik: FormikProps<RegisterNewUserEventType>;
-	value: dateFns | undefined;
+	value: Moment | Date | undefined;
 	isLoadingCreateEvent: boolean;
 }
 

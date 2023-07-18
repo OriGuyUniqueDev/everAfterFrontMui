@@ -34,8 +34,6 @@ const FormikRegistrationConfig = {
 		}),
 		typeOfUser: yup.string().equals([TypeOfUserType]).required(),
 	}),
-	onSubmit(values: RegistrationDataType) {
-		console.log(values);
-	},
+	onSubmit(values: RegistrationDataType) {},
 };
 export default FormikRegistrationConfig;
