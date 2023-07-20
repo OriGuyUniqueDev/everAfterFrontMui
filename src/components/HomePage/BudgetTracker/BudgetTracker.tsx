@@ -11,13 +11,13 @@ import useEvents from "@/hooks/useEvents";
 import useUsers from "@/hooks/useUsers";
 import { useAuthUser } from "react-auth-kit";
 import ExpensesType from "@/interfaces/ExpensesType";
+import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 
 interface BudgetTrackerProps {}
 
 const BudgetTracker: FunctionComponent<BudgetTrackerProps> = () => {
 	const [isLoading, setLoading] = useState(false);
-	const { user } = useUsers();
-	const { event, handleGetOneEvent } = useEvents();
+	const { user, event, handleGetOneEvent, handleGetOneUser } = useUserAndEventContext();
 	console.log(event);
 
 	const addExpanseFormik = useFormik<ExpensesType>({

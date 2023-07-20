@@ -12,13 +12,14 @@ import UserFromServerType from "@/interfaces/UserFromServerType";
 import moment from "moment";
 import useEvents from "@/hooks/useEvents";
 import MyEverAfterCardTable from "./MyEverAfterCardTable";
+import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 
 interface MyEverAfterCardProps {
 	user: UserFromServerType;
 }
 
 const MyEverAfterCard: FunctionComponent<MyEverAfterCardProps> = ({ user }) => {
-	const { error, event, handleGetAllEvents, handleGetOneEvent, isLoading } = useEvents(user.eventData, user);
+	const { handleGetOneEvent, event } = useUserAndEventContext();
 
 	useEffect(() => {
 		handleGetOneEvent();

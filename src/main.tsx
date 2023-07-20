@@ -9,6 +9,7 @@ import React from "react";
 import { AuthProvider } from "react-auth-kit";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { UserAndEventContextProvider } from "./contexts/UserAndEventContexts";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
@@ -19,13 +20,15 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 				cookieDomain={window.location.hostname}
 				cookieSecure={false}
 			>
-				<ThemeProvider theme={theme}>
-					<BrowserRouter>
-						<Layout>
-							<Router />
-						</Layout>
-					</BrowserRouter>
-				</ThemeProvider>
+				<UserAndEventContextProvider>
+					<ThemeProvider theme={theme}>
+						<BrowserRouter>
+							<Layout>
+								<Router />
+							</Layout>
+						</BrowserRouter>
+					</ThemeProvider>
+				</UserAndEventContextProvider>
 			</AuthProvider>
 		</LocalizationProvider>
 	</React.StrictMode>

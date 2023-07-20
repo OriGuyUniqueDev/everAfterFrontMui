@@ -15,10 +15,8 @@ import WelcomeMyEverAfter from "@/components/HomePage/MyEverAfter/WelcomeMyEverA
 import CreateEventForm from "@/components/HomePage/MyEverAfter/CreateEventForm";
 import * as yup from "yup";
 import MyEverAfterCard from "@/components/HomePage/MyEverAfter/MyEverAfterCard";
-import { createRefresh } from "react-auth-kit";
-import { useAuthHeader } from "react-auth-kit";
-
 import { Moment } from "moment";
+import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 
 interface HomePageProps {}
 
@@ -27,7 +25,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 	const [value, setValue] = useState<Moment | Date | undefined>(undefined);
 	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
 	const data = auth();
-	const { handleGetOneUser, user, isLoading } = useUsers(data!.email);
+	const { event, handleGetOneEvent, handleGetOneUser, user } = useUserAndEventContext();
 
 	const formik = useFormik({
 		initialValues: {
