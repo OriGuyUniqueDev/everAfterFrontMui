@@ -7,6 +7,8 @@ export default interface EventFromServerType {
 	venueName: string;
 	dateOfWedding: string;
 	budget: number;
+	presents: number;
+	mealPrice: number;
 	tasks: string[];
 	_id: string;
 }

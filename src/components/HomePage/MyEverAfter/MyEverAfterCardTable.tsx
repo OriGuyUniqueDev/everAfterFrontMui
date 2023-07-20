@@ -63,7 +63,7 @@ const MyEverAfterCardTable: FunctionComponent<MyEverAfterCardTableProps> = ({ ev
 						<Typography>Days Left</Typography>
 					</TableCell>
 					<TableCell>
-						<Typography>{moment(event.dateOfWedding).diff(new Date(), "days", false)}</Typography>
+						<Typography>{moment(event.dateOfWedding).diff(new Date(), "days", false).toString()}</Typography>
 					</TableCell>
 				</TableRow>
 				<TableRow>
