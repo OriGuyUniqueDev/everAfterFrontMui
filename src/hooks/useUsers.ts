@@ -16,20 +16,20 @@ const useUsers = (payloadData: AuthStateUserObject | string | null) => {
 		eventData: "",
 	});
 	const [users, setUsers] = useState(null);
-	const [isLoading, setLoading] = useState(true);
+	const [isLoadingUser, setLoadingUser] = useState(true);
 	const [error, setError] = useState(null);
 
 	const handleGetOneUser = async () => {
 		let user;
 		if (payloadData !== null) {
 			try {
-				setLoading(true);
+				setLoadingUser(true);
 				user = await getUser(payloadData.email);
-				setLoading(false);
+				setLoadingUser(false);
 				setError(null);
 				setUser(user);
 			} catch (error) {
-				setLoading(false);
+				setLoadingUser(false);
 				setError(error);
 				setUser({
 					_id: "",
@@ -47,13 +47,13 @@ const useUsers = (payloadData: AuthStateUserObject | string | null) => {
 	};
 	const handleGetAllUsers = async () => {
 		try {
-			setLoading(true);
+			setLoadingUser(true);
 			const users = await getAllUsers();
-			setLoading(false);
+			setLoadingUser(false);
 			setError(null);
 			setUsers(users);
 		} catch (error) {
-			setLoading(false);
+			setLoadingUser(false);
 			setError(error);
 			setUser({
 				_id: "",
@@ -73,7 +73,7 @@ const useUsers = (payloadData: AuthStateUserObject | string | null) => {
 		handleGetAllUsers,
 		setUser,
 		user,
-		isLoading,
+		isLoadingUser,
 		error,
 	};
 };

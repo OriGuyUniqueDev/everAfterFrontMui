@@ -9,40 +9,60 @@ interface HomePageNavLeftSideProps {}
 
 const HomePageNavLeftSide: FunctionComponent<HomePageNavLeftSideProps> = () => {
 	return (
-		<Stack gap={3} direction={"row"} width={"100%"} alignItems={"center"}>
+		<Stack
+			gap={3}
+			direction={"row"}
+			width={"100%"}
+			alignItems={"center"}
+		>
 			<NavLink to={"/MyEverAfter"}>
-				<Typography variant="h5" fontFamily={"Pacifico"} noWrap sx={{ letterSpacing: "0.1rem" }}>
+				<Typography
+					variant="h5"
+					fontFamily={"Pacifico"}
+					noWrap
+					sx={{ letterSpacing: "0.1rem" }}
+				>
 					EverAfter
 				</Typography>
 			</NavLink>
 			<Link to={"/MyEverAfter"}>
-				<Typography color={"text.primary"} variant="body1" fontSize={18} display={{ xs: "none", lg: "block" }}>
+				<Typography
+					color={"text.primary"}
+					variant="body1"
+					fontSize={18}
+					display={{ xs: "none", lg: "block" }}
+				>
 					My EverAfter
 				</Typography>
 			</Link>
 			<NavLink to={"MyBudget"}>
-				<Typography color={"text.primary"} variant="body1" fontSize={18} display={{ xs: "none", lg: "block" }}>
+				<Typography
+					color={"text.primary"}
+					variant="body1"
+					fontSize={18}
+					display={{ xs: "none", lg: "block" }}
+				>
 					My Budget
 				</Typography>
 			</NavLink>
 			<NavLink to={"MyGuests"}>
-				<Typography color={"text.primary"} variant="body1" fontSize={18} display={{ xs: "none", lg: "block" }}>
+				<Typography
+					color={"text.primary"}
+					variant="body1"
+					fontSize={18}
+					display={{ xs: "none", lg: "block" }}
+				>
 					My Guests
 				</Typography>
 			</NavLink>
 			<NavLink to={"MyTasks"}>
-				<Typography color={"text.primary"} variant="body1" fontSize={18} display={{ xs: "none", lg: "block" }}>
+				<Typography
+					color={"text.primary"}
+					variant="body1"
+					fontSize={18}
+					display={{ xs: "none", lg: "block" }}
+				>
 					My Tasks
-				</Typography>
-			</NavLink>
-			<NavLink to={"MyCalculator"}>
-				<Typography color={"text.primary"} variant="body1" fontSize={18} display={{ xs: "none", lg: "block" }}>
-					My Calculator
-				</Typography>
-			</NavLink>
-			<NavLink to={"MyVendors"}>
-				<Typography color={"text.primary"} variant="body1" fontSize={18} display={{ xs: "none", lg: "block" }}>
-					My vendors
 				</Typography>
 			</NavLink>
 		</Stack>

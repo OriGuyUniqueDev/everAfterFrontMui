@@ -35,3 +35,55 @@ export async function getEvent(eventId: AuthStateUserObject | string | null, use
 		return Promise.reject(err.message);
 	}
 }
+export async function updateEvent(eventId: AuthStateUserObject | string | null, updatedData: EventToServerType, user: UserFromServerType) {
+	try {
+		const { data } = await api.patch(`events/${eventId}`, updatedData, {
+			data: {
+				email: user.email,
+			},
+		});
+
+		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
+}
+export async function updateEventExpanse(eventId: AuthStateUserObject | string | null, updatedData: any, user: UserFromServerType) {
+	try {
+		const { data } = await api.patch(`events/updateExpanse/${eventId}`, updatedData, {
+			data: {
+				email: user.email,
+			},
+		});
+
+		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
+}
+export async function updateEventGuestList(eventId: AuthStateUserObject | string | null, updatedData: any, user: UserFromServerType) {
+	try {
+		const { data } = await api.patch(`events/updateGuest/${eventId}`, updatedData, {
+			data: {
+				email: user.email,
+			},
+		});
+
+		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
+}
+export async function updateEventTaskList(eventId: AuthStateUserObject | string | null, updatedData: any, user: UserFromServerType) {
+	try {
+		const { data } = await api.patch(`events/updateTask/${eventId}`, updatedData, {
+			data: {
+				email: user.email,
+			},
+		});
+
+		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
+}

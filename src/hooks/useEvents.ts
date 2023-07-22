@@ -13,25 +13,31 @@ const useEvents = (eventId: AuthStateUserObject | string | null, user: UserFromS
 		eventPlanner: "",
 		eventUser: "",
 		hasEventPlanner: false,
+		alreadyPaid: 0,
+		leftToSpend: 0,
+		mealPrice: 0,
+		presents: 0,
+		totalBudget: 0,
+		totalSpent: 0,
 		hasVenue: false,
 		numOfGuest: 0,
 		tasks: [],
 		venueName: "",
 	});
 	const [events, setEvents] = useState<EventFromServerType[] | null>(null);
-	const [isLoading, setLoading] = useState(true);
+	const [isLoadingEvent, setLoadingEvent] = useState(true);
 	const [error, setError] = useState(null);
 
 	const handleGetOneEvent = async () => {
 		try {
-			setLoading(true);
+			setLoadingEvent(true);
 			const event = await getEvent(eventId, user);
 
-			setLoading(false);
+			setLoadingEvent(false);
 			setError(null);
 			setEvent(event);
 		} catch (error) {
-			setLoading(false);
+			setLoadingEvent(false);
 			setError(error);
 			setEvent({
 				_id: "",
@@ -40,6 +46,12 @@ const useEvents = (eventId: AuthStateUserObject | string | null, user: UserFromS
 				eventPlanner: "",
 				eventUser: "",
 				hasEventPlanner: false,
+				alreadyPaid: 0,
+				leftToSpend: 0,
+				mealPrice: 0,
+				presents: 0,
+				totalBudget: 0,
+				totalSpent: 0,
 				hasVenue: false,
 				numOfGuest: 0,
 				tasks: [],
@@ -49,13 +61,13 @@ const useEvents = (eventId: AuthStateUserObject | string | null, user: UserFromS
 	};
 	const handleGetAllEvents = async () => {
 		try {
-			setLoading(true);
+			setLoadingEvent(true);
 			const events = await getAllUsers();
-			setLoading(false);
+			setLoadingEvent(false);
 			setError(null);
 			setEvents(events);
 		} catch (error) {
-			setLoading(false);
+			setLoadingEvent(false);
 			setError(error);
 			setEvents([]);
 		}
@@ -64,7 +76,7 @@ const useEvents = (eventId: AuthStateUserObject | string | null, user: UserFromS
 		handleGetOneEvent,
 		handleGetAllEvents,
 		event,
-		isLoading,
+		isLoadingEvent,
 		error,
 	};
 };

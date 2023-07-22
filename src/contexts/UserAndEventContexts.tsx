@@ -10,6 +10,8 @@ type UserAndEventContextType = {
 	event: EventFromServerType;
 	handleGetOneUser: VoidFunction;
 	handleGetOneEvent: VoidFunction;
+	isLoadingUser: boolean;
+	isLoadingEvent: boolean;
 };
 
 const UserAndEventContext = createContext<UserAndEventContextType | null>(null);
@@ -21,15 +23,15 @@ type UserAndEventContextProps = {
 export const UserAndEventContextProvider: FC<UserAndEventContextProps> = ({ children }) => {
 	const auth = useAuthUser();
 	const payloadData = auth();
-	const { user, handleGetOneUser } = useUsers(payloadData);
-	const { event, handleGetOneEvent } = useEvents(user.eventData, user);
+	const { user, handleGetOneUser, isLoadingUser } = useUsers(payloadData);
+	const { event, handleGetOneEvent, isLoadingEvent } = useEvents(user.eventData, user);
 
 	useEffect(() => {
 		handleGetOneUser();
 		handleGetOneEvent();
 	}, [user.eventData]);
 
-	return <UserAndEventContext.Provider value={{ user, handleGetOneUser, event, handleGetOneEvent }}>{children}</UserAndEventContext.Provider>;
+	return <UserAndEventContext.Provider value={{ user, handleGetOneUser, event, handleGetOneEvent, isLoadingEvent, isLoadingUser }}>{children}</UserAndEventContext.Provider>;
 };
 
 export const useUserAndEventContext = (): UserAndEventContextType => {

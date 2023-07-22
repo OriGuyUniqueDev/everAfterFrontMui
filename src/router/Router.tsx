@@ -20,11 +20,33 @@ const Router: FunctionComponent<RouterProps> = () => {
 	const { functions, useStates } = useDrawers();
 	return (
 		<Routes>
-			<Route path="/" element={<LandingPage />}>
-				<Route path="welcomeBackLetsLogin" element={<LoginPage handleClickOpen={functions.openLoginSection} open={useStates.openLoginSection.openLoginDrawer} />} />
+			<Route
+				path="/"
+				element={<LandingPage />}
+			>
+				<Route
+					path="welcomeBackLetsLogin"
+					element={
+						<LoginPage
+							handleClickOpen={functions.openLoginSection}
+							open={useStates.openLoginSection.openLoginDrawer}
+						/>
+					}
+				/>
 			</Route>
-			<Route path="/about" element={<AboutSection />} />
-			<Route path="/happyToSeeYouRegister" element={<RegistrationPage handleClickOpen={functions.openRegistrationDrawer} open={useStates.openRegistrationDrawer.openRegDrawer} />} />
+			<Route
+				path="/about"
+				element={<AboutSection />}
+			/>
+			<Route
+				path="/happyToSeeYouRegister"
+				element={
+					<RegistrationPage
+						handleClickOpen={functions.openRegistrationDrawer}
+						open={useStates.openRegistrationDrawer.openRegDrawer}
+					/>
+				}
+			/>
 			<Route
 				path="/MyEverAfter"
 				element={
@@ -57,24 +79,6 @@ const Router: FunctionComponent<RouterProps> = () => {
 				element={
 					<RequireAuth loginPath="/welcomeBackLetsLogin">
 						<TasksList />
-					</RequireAuth>
-				}
-			/>
-
-			<Route
-				path="MyCalculator"
-				element={
-					<RequireAuth loginPath="/welcomeBackLetsLogin">
-						<Calculator />
-					</RequireAuth>
-				}
-			/>
-
-			<Route
-				path="MyVendors"
-				element={
-					<RequireAuth loginPath="/welcomeBackLetsLogin">
-						<MyVendors />
 					</RequireAuth>
 				}
 			/>

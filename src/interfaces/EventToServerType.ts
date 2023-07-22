@@ -1,8 +1,14 @@
 export default interface EventToServerType {
-	guestNum: string;
-	hasVanue: boolean;
-	eventDate: dateFns;
+	numOfGuest: number;
+	eventUser: string;
 	eventPlanner: string;
-	venueName: string;
 	hasEventPlanner: boolean;
+	hasVenue: boolean;
+	venueName: string;
+	dateOfWedding: string;
+	budget: number;
+	presents: number;
+	mealPrice: number;
+	tasks: string[];
+	_id: string;
 }

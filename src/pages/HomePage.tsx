@@ -27,22 +27,47 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 	const data = auth();
 	const { event, handleGetOneEvent, handleGetOneUser, user } = useUserAndEventContext();
 
-	const formik = useFormik({
+	const formik = useFormik<RegisterNewUserEventType>({
 		initialValues: {
-			numOfGuest: "",
+			numOfGuest: 0,
 			eventUser: data!.id,
 			hasVenue: false,
-			dateOfWedding: value,
+			dateOfWedding: new Date(),
 			eventPlanner: "",
 			venueName: "",
 			hasEventPlanner: false,
 			budget: 0,
+			totalBudget: 0,
+			mealPrice: 0,
+			presents: 0,
+			totalGuestByList: 0,
+			brideSide: 0,
+			groomSide: 0,
+			guestList: [],
+			totalSpent: 0,
+			leftToSpend: 0,
+			alreadyPaid: 0,
+			expenses: [],
+			todoCompleted: 0,
+			todoHigh: 0,
+			todoLow: 0,
+			totalTodoLeft: 0,
 			tasks: [],
 		},
 		validationSchema: yup.object({
 			numOfGuest: yup.number(),
+			totalBudget: yup.number(),
+			totalGuestByList: yup.number(),
+			totalSpent: yup.number(),
+			leftToSpend: yup.number(),
+			alreadyPaid: yup.number(),
+			brideSide: yup.number(),
+			groomSide: yup.number(),
 			budget: yup.number(),
+			presents: yup.number(),
+			mealPrice: yup.number(),
 			tasks: yup.array(),
+			guestList: yup.array(),
 			hasVenue: yup.boolean(),
 			dateOfWedding: yup.date(),
 			eventPlanner: yup.string(),
@@ -54,6 +79,8 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 		async onSubmit(values: RegisterNewUserEventType) {
 			try {
 				setLoadingCreateEvent(true);
+				console.log(values);
+
 				const res = await createEvent(values);
 
 				successMsg("Event Created");
