@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
+import { deleteGuest, deleteTask } from "@/services/eventService";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
 import { FunctionComponent } from "react";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 interface TaskTableProps {}
 
 const TaskTable: FunctionComponent<TaskTableProps> = () => {
-	const { event } = useUserAndEventContext();
+	const { event, user, handleGetOneEvent } = useUserAndEventContext();
 	return (
 		<TableContainer>
 			<Table
@@ -19,6 +21,7 @@ const TaskTable: FunctionComponent<TaskTableProps> = () => {
 						<TableCell align="center">Task Name</TableCell>
 						<TableCell align="center">High or Low Side?</TableCell>
 						<TableCell align="center">Completed?</TableCell>
+						<TableCell align="center">Actions</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
@@ -33,6 +36,25 @@ const TaskTable: FunctionComponent<TaskTableProps> = () => {
 							<TableCell align="center">{task.task}</TableCell>
 							<TableCell align="center">{task.priority}</TableCell>
 							<TableCell align="center">{task.completed ? "✔️" : "❌"}</TableCell>
+							<TableCell align="center">
+								<IconButton
+									aria-label="delete"
+									color="error"
+									onClick={async () => {
+										try {
+											const isConfirm = confirm(`Are You Sure you want to DELETE ${task.task} ?`);
+											if (isConfirm) {
+												await deleteTask(user.eventData, task.id, user, { completed: task.completed, priority: task.priority });
+												handleGetOneEvent();
+											}
+										} catch (error) {
+											console.log(error);
+										}
+									}}
+								>
+									<DeleteForeverIcon />
+								</IconButton>
+							</TableCell>
 						</TableRow>
 					))}
 				</TableBody>

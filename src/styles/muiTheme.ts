@@ -44,7 +44,7 @@ export const theme = createTheme({
 		},
 	},
 	typography: {
-		fontFamily: '"Outfit", sans-serif',
+		fontFamily: '"Fredoka", sans-serif',
 		h1: {
 			fontFamily: '"Pacifico", sans-serif',
 		},
@@ -62,6 +62,12 @@ export const theme = createTheme({
 		},
 		h6: {
 			fontFamily: '"Abril Fatface", sans-serif',
+		},
+		body1: {
+			fontFamily: '"Fredoka", sans-serif',
+		},
+		body2: {
+			fontFamily: '"Fredoka", sans-serif',
 		},
 	},
 });

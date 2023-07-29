@@ -87,3 +87,44 @@ export async function updateEventTaskList(eventId: AuthStateUserObject | string 
 		return Promise.reject(err.message);
 	}
 }
+export async function deleteExpanse(eventId: AuthStateUserObject | string | null, expanseId: string, user: UserFromServerType, expanseInfo) {
+	try {
+		console.log(expanseInfo);
+
+		const { data } = await api.patch(`events/deleteExpanse/${eventId}/${expanseId}`, expanseInfo, {
+			data: {
+				email: user.email,
+			},
+		});
+
+		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
+}
+export async function deleteGuest(eventId: AuthStateUserObject | string | null, guestId: string | number, user: UserFromServerType, guestInfo) {
+	try {
+		const { data } = await api.patch(`events/deleteGuest/${eventId}/${guestId}`, guestInfo, {
+			data: {
+				email: user.email,
+			},
+		});
+
+		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
+}
+export async function deleteTask(eventId: AuthStateUserObject | string | null, taskId: string | number, user: UserFromServerType, taskInfo) {
+	try {
+		const { data } = await api.patch(`events/deleteTask/${eventId}/${taskId}`, taskInfo, {
+			data: {
+				email: user.email,
+			},
+		});
+
+		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
+}

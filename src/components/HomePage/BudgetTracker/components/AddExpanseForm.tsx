@@ -45,7 +45,7 @@ const AddExpanseForm: FunctionComponent<AddExpanseFormProps> = () => {
 	return (
 		<form onSubmit={addExpanseFormik.handleSubmit}>
 			<Typography
-				variant="body2"
+				variant="body1"
 				fontSize={"1.5rem"}
 				fontWeight={600}
 				marginBottom="1.2rem"
@@ -67,6 +67,9 @@ const AddExpanseForm: FunctionComponent<AddExpanseFormProps> = () => {
 					required
 					margin="dense"
 					id="name"
+					inputProps={{
+						style: { fontFamily: '"Fredoka", sans-serif', fontWeight: 600 },
+					}}
 					label="Expanse Name"
 					type="text"
 					variant="outlined"

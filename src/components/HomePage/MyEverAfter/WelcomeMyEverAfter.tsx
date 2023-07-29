@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import useUsers from "@/hooks/useUsers";
 import UserFromServerType from "@/interfaces/UserFromServerType";
 import { Typography } from "@mui/material";
 import { FunctionComponent } from "react";
@@ -18,16 +17,16 @@ const WelcomeMyEverAfter: FunctionComponent<WelcomeMyEverAfterProps> = ({ user }
 				variant="h1"
 				fontSize={70}
 			>
-				Welcome {user.brideName} & {user.groomName}
+				{!user.businessAccount ? `Welcome ${user.brideName} & ${user.groomName}` : `Welcome ${user.fullName}`}
 			</Typography>
 			<Typography
 				width={"100%"}
 				marginTop={5}
-				fontSize={24}
+				fontSize={22}
 				textAlign={"center"}
 				variant="body1"
 			>
-				{user.eventData.length <= 0 ? "Let's Start Planing Your EverAfter day" : "This Will be an amazing EverAfter"}
+				{user.businessAccount ? (user.eventData.length <= 0 ? "as Business account you can manage multiple events, ENJOY" : "Here is the event information to change please visit MyEvents") : user.eventData.length <= 0 ? "Let's Start Planing Your EverAfter day" : "This Will be an amazing EverAfter"}
 			</Typography>
 			<Typography
 				width={"100%"}

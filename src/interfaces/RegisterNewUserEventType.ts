@@ -28,4 +28,5 @@ export default interface RegisterNewUserEventType {
 	todoCompleted: number;
 	todoHigh: number;
 	todoLow: number;
+	connectedUser?: string;
 }

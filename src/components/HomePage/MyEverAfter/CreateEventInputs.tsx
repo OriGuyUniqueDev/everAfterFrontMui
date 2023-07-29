@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
+import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
 import { Stack, TextField, FormControlLabel, Checkbox, Button, CircularProgress, Typography } from "@mui/material";
 import { DateField } from "@mui/x-date-pickers";
@@ -13,6 +14,7 @@ interface CreateEventInputsProps {
 }
 
 const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, value, isLoadingCreateEvent }) => {
+	const { user } = useUserAndEventContext();
 	return (
 		<Stack gap={1}>
 			<TextField
@@ -33,6 +35,25 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 				name="numOfGuest"
 				error={formik.touched.numOfGuest && Boolean(formik.errors.numOfGuest)}
 				helperText={formik.touched.numOfGuest && formik.errors.numOfGuest}
+			/>
+			<TextField
+				InputLabelProps={{
+					placeholder: "Connect the event to ?",
+					style: { color: "#bbb" },
+				}}
+				sx={{ width: "20rem" }}
+				value={formik.values.connectedUser}
+				onChange={formik.handleChange}
+				onBlur={formik.handleBlur}
+				required
+				margin="dense"
+				id="connectedUser"
+				label="Connect the event to ?"
+				type="email"
+				variant="outlined"
+				name="connectedUser"
+				// error={formik.touched.numOfGuest && Boolean(formik.errors.numOfGuest)}
+				// helperText={formik.touched.numOfGuest && formik.errors.numOfGuest}
 			/>
 			<DateField
 				label="Wedding Date"
@@ -94,13 +115,17 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 				<></>
 			)}
 			<FormControlLabel
+				checked={user.businessAccount}
+				disabled={user.businessAccount}
+				value={user.businessAccount === false ? formik.values.hasEventPlanner : true}
 				control={
 					<Checkbox
 						name="hasEventPlanner"
 						id="hasEventPlanner"
 						onBlur={formik.handleBlur}
 						onChange={formik.handleChange}
-						value={formik.values.hasEventPlanner}
+						value={user.businessAccount === false ? formik.values.hasEventPlanner : true}
+						// disabled={user.businessAccount}
 					/>
 				}
 				label="Do you have an Event Planner?"
@@ -125,6 +150,9 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 						name="eventPlanner"
 						error={formik.touched.eventPlanner && Boolean(formik.errors.eventPlanner)}
 						helperText={formik.touched.eventPlanner && formik.errors.eventPlanner}
+						InputProps={{
+							readOnly: user.businessAccount,
+						}}
 					/>
 				</>
 			) : (

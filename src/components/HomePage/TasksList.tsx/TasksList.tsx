@@ -143,6 +143,9 @@ const TasksList: FunctionComponent<TasksListProps> = () => {
 									value={formik.values.task}
 									id="task"
 									label="Task Name"
+									inputProps={{
+										style: { fontFamily: '"Fredoka", sans-serif', fontWeight: 600 },
+									}}
 									type="text"
 									variant="outlined"
 									name="task"

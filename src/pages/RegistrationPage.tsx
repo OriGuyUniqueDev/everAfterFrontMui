@@ -38,7 +38,7 @@ const RegistrationPage: FunctionComponent<RegistrationPageProps> = ({ handleClic
 			fullName: "",
 			groomName: "",
 			typeOfUser: TypeOfUserType.Private,
-			eventData: "No Event Connected",
+			eventData: "",
 		} as RegistrationDataType,
 		validationSchema: yup.object().shape({
 			email: yup.string().required().email("Invalid Email"),
@@ -67,6 +67,7 @@ const RegistrationPage: FunctionComponent<RegistrationPageProps> = ({ handleClic
 			const valuesToRegister = values;
 			if (valuesToRegister.businessAccount === true) {
 				valuesToRegister.typeOfUser = TypeOfUserType.Business;
+				valuesToRegister.fullName = values.eventPannerName;
 			} else {
 				valuesToRegister.typeOfUser = TypeOfUserType.Private;
 			}

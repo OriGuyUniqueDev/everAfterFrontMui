@@ -72,6 +72,9 @@ const AddTaskForm: FunctionComponent<AddTaskFormProps> = () => {
 					label="Task Name"
 					type="text"
 					variant="outlined"
+					inputProps={{
+						style: { fontFamily: '"Fredoka", sans-serif', fontWeight: 600 },
+					}}
 					name="task"
 					error={addTaskFormik.touched.task && Boolean(addTaskFormik.errors.task)}
 					helperText={addTaskFormik.touched.task && addTaskFormik.errors.task}

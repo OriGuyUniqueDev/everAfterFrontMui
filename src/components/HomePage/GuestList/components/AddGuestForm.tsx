@@ -73,6 +73,9 @@ const AddGuestForm: FunctionComponent<AddGuestFormProps> = () => {
 					value={addGuestFormik.values.guestName}
 					id="guestName"
 					label="Guest Name"
+					inputProps={{
+						style: { fontFamily: '"Fredoka", sans-serif', fontWeight: 600 },
+					}}
 					type="text"
 					variant="outlined"
 					name="guestName"

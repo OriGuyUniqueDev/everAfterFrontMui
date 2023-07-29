@@ -33,9 +33,9 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 			eventUser: data!.id,
 			hasVenue: false,
 			dateOfWedding: new Date(),
-			eventPlanner: "",
+			eventPlanner: user.eventPannerName,
 			venueName: "",
-			hasEventPlanner: false,
+			hasEventPlanner: user.businessAccount ? true : false,
 			budget: 0,
 			totalBudget: 0,
 			mealPrice: 0,
@@ -53,6 +53,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 			todoLow: 0,
 			totalTodoLeft: 0,
 			tasks: [],
+			connectedUser: "",
 		},
 		validationSchema: yup.object({
 			numOfGuest: yup.number(),
@@ -85,6 +86,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 
 				successMsg("Event Created");
 				handleGetOneUser();
+				handleGetOneEvent();
 				setLoadingCreateEvent(false);
 			} catch (err) {
 				const error = err as AxiosError;
