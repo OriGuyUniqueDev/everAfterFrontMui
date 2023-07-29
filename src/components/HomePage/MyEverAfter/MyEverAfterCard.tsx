@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import Box from "@mui/material/Box/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,6 +13,8 @@ import moment from "moment";
 import useEvents from "@/hooks/useEvents";
 import MyEverAfterCardTable from "./MyEverAfterCardTable";
 import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
+import { Button, Modal } from "@mui/material";
+import { style } from "@mui/system";
 
 interface MyEverAfterCardProps {
 	user: UserFromServerType;
@@ -36,9 +38,7 @@ const MyEverAfterCard: FunctionComponent<MyEverAfterCardProps> = ({ user }) => {
 			>
 				My EverAfter
 			</Typography>
-			<Typography variant="body1">
-				The Wedding of {user.brideName} {user.groomName}
-			</Typography>
+			<Typography variant="body1">{user.businessAccount ? "" : `The Wedding of ${user.brideName} ${user.groomName}`}</Typography>
 			<MyEverAfterCardTable event={event} />
 		</Box>
 	);

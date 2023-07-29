@@ -4,10 +4,12 @@ import { FunctionComponent } from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import { NavLink } from "react-router-dom";
 import useDrawers from "@/hooks/useDrawers";
+import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 
 interface HomePageNavLeftSideProps {}
 
 const HomePageNavLeftSide: FunctionComponent<HomePageNavLeftSideProps> = () => {
+	const { user } = useUserAndEventContext();
 	return (
 		<Stack
 			gap={3}
@@ -65,6 +67,20 @@ const HomePageNavLeftSide: FunctionComponent<HomePageNavLeftSideProps> = () => {
 					My Tasks
 				</Typography>
 			</NavLink>
+			{user.businessAccount ? (
+				<NavLink to={"MyEvents"}>
+					<Typography
+						color={"text.primary"}
+						variant="body1"
+						fontSize={18}
+						display={{ xs: "none", lg: "block" }}
+					>
+						My Events
+					</Typography>
+				</NavLink>
+			) : (
+				""
+			)}
 		</Stack>
 	);
 };

@@ -80,7 +80,6 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 		async onSubmit(values: RegisterNewUserEventType) {
 			try {
 				setLoadingCreateEvent(true);
-				console.log(values);
 
 				const res = await createEvent(values);
 

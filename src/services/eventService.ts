@@ -7,6 +7,7 @@ import { AuthStateUserObject } from "react-auth-kit/dist/types";
 import EventToServerType from "@/interfaces/EventToServerType";
 import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
 import UserFromServerType from "@/interfaces/UserFromServerType";
+import { ListOfUserType } from "@/interfaces/ListOfUserType";
 
 const api = axios.create({
 	baseURL: import.meta.env.VITE_SERVER_URL,
@@ -31,6 +32,19 @@ export async function getEvent(eventId: AuthStateUserObject | string | null, use
 		});
 
 		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
+}
+export async function findAllBusinessUsersEvents(userId: AuthStateUserObject | string | null, user: UserFromServerType) {
+	try {
+		const { data } = await api.get(`events/allBusinessEvent/${user.email}`, {
+			data: {
+				email: user.email,
+			},
+		});
+
+		return data as ListOfUserType[];
 	} catch (err) {
 		return Promise.reject(err.message);
 	}
@@ -89,8 +103,6 @@ export async function updateEventTaskList(eventId: AuthStateUserObject | string 
 }
 export async function deleteExpanse(eventId: AuthStateUserObject | string | null, expanseId: string, user: UserFromServerType, expanseInfo) {
 	try {
-		console.log(expanseInfo);
-
 		const { data } = await api.patch(`events/deleteExpanse/${eventId}/${expanseId}`, expanseInfo, {
 			data: {
 				email: user.email,

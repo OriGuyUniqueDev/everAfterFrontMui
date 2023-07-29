@@ -12,6 +12,8 @@ type UserAndEventContextType = {
 	handleGetOneEvent: VoidFunction;
 	isLoadingUser: boolean;
 	isLoadingEvent: boolean;
+	setUser: React.Dispatch<React.SetStateAction<UserFromServerType>>;
+	setEventDataInUser: (eventData: string) => Promise<void>;
 };
 
 const UserAndEventContext = createContext<UserAndEventContextType | null>(null);
@@ -23,7 +25,7 @@ type UserAndEventContextProps = {
 export const UserAndEventContextProvider: FC<UserAndEventContextProps> = ({ children }) => {
 	const auth = useAuthUser();
 	const payloadData = auth();
-	const { user, handleGetOneUser, isLoadingUser } = useUsers(payloadData);
+	const { user, handleGetOneUser, isLoadingUser, setUser, setEventDataInUser } = useUsers(payloadData);
 	const { event, handleGetOneEvent, isLoadingEvent } = useEvents(user.eventData, user);
 
 	useEffect(() => {
@@ -31,7 +33,7 @@ export const UserAndEventContextProvider: FC<UserAndEventContextProps> = ({ chil
 		handleGetOneEvent();
 	}, [user.eventData]);
 
-	return <UserAndEventContext.Provider value={{ user, handleGetOneUser, event, handleGetOneEvent, isLoadingEvent, isLoadingUser }}>{children}</UserAndEventContext.Provider>;
+	return <UserAndEventContext.Provider value={{ user, handleGetOneUser, event, handleGetOneEvent, isLoadingEvent, isLoadingUser, setUser, setEventDataInUser }}>{children}</UserAndEventContext.Provider>;
 };
 
 export const useUserAndEventContext = (): UserAndEventContextType => {

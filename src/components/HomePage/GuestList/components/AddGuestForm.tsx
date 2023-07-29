@@ -39,7 +39,6 @@ const AddGuestForm: FunctionComponent<AddGuestFormProps> = () => {
 				addGuestFormik.resetForm({
 					values: { id: 0, guestName: "", isBrideSide: false, amount: 0 },
 				});
-				console.log(addGuestFormik.values.isBrideSide);
 
 				handleGetOneEvent();
 			} catch (error) {

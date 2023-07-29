@@ -2,6 +2,7 @@
 import BudgetTracker from "@/components/HomePage/BudgetTracker/BudgetTracker";
 import Calculator from "@/components/HomePage/Calculator/Calculator";
 import GuestList from "@/components/HomePage/GuestList/GuestList";
+import MyEvents from "@/components/HomePage/MyEvents/MyEvents";
 import TasksList from "@/components/HomePage/TasksList.tsx/TasksList";
 import MyVendors from "@/components/HomePage/Vendors/MyVendors";
 import AboutSection from "@/components/LandingPage/About/AboutSection";
@@ -79,6 +80,14 @@ const Router: FunctionComponent<RouterProps> = () => {
 				element={
 					<RequireAuth loginPath="/welcomeBackLetsLogin">
 						<TasksList />
+					</RequireAuth>
+				}
+			/>
+			<Route
+				path="MyEvents"
+				element={
+					<RequireAuth loginPath="/welcomeBackLetsLogin">
+						<MyEvents />
 					</RequireAuth>
 				}
 			/>

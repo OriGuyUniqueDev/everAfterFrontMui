@@ -11,9 +11,10 @@ interface CreateEventInputsProps {
 	formik: FormikProps<RegisterNewUserEventType>;
 	value: Moment | Date | undefined;
 	isLoadingCreateEvent: boolean;
+	buttonText: string;
 }
 
-const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, value, isLoadingCreateEvent }) => {
+const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, value, isLoadingCreateEvent, buttonText }) => {
 	const { user } = useUserAndEventContext();
 	return (
 		<Stack gap={1}>
@@ -39,7 +40,7 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 			<TextField
 				InputLabelProps={{
 					placeholder: "Connect the event to ?",
-					style: { color: "#bbb" },
+					style: { color: user.businessAccount === true ? "#bbb" : "" },
 				}}
 				sx={{ width: "20rem" }}
 				value={formik.values.connectedUser}
@@ -52,6 +53,7 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 				type="email"
 				variant="outlined"
 				name="connectedUser"
+				disabled={user.businessAccount === true ? false : true}
 				// error={formik.touched.numOfGuest && Boolean(formik.errors.numOfGuest)}
 				// helperText={formik.touched.numOfGuest && formik.errors.numOfGuest}
 			/>
@@ -115,8 +117,8 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 				<></>
 			)}
 			<FormControlLabel
-				checked={user.businessAccount}
-				disabled={user.businessAccount}
+				checked={user.businessAccount === true ? true : formik.values.hasEventPlanner}
+				disabled={user.businessAccount === false ? false : true}
 				value={user.businessAccount === false ? formik.values.hasEventPlanner : true}
 				control={
 					<Checkbox
@@ -166,6 +168,8 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 					<>
 						<CircularProgress size={24} /> <Typography sx={{ color: "#fff", ml: 1 }}>Creating</Typography>
 					</>
+				) : buttonText !== "" ? (
+					buttonText
 				) : (
 					"Create New Event"
 				)}

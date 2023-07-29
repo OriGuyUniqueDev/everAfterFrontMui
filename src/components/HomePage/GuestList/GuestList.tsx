@@ -28,8 +28,6 @@ const GuestList: FunctionComponent<GuestListProps> = () => {
 		}),
 		onSubmit(values) {
 			try {
-				console.log(values);
-
 				updateEvent(user.eventData, values, user);
 				handleGetOneEvent();
 			} catch (error) {
