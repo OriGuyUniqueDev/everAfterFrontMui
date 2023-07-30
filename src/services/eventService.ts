@@ -49,7 +49,7 @@ export async function findAllBusinessUsersEvents(userId: AuthStateUserObject | s
 		return Promise.reject(err.message);
 	}
 }
-export async function updateEvent(eventId: AuthStateUserObject | string | null, updatedData: EventToServerType, user: UserFromServerType) {
+export async function updateEvent(eventId: AuthStateUserObject | string | null, updatedData: EventToServerType | { email: string }, user: UserFromServerType) {
 	try {
 		const { data } = await api.patch(`events/${eventId}`, updatedData, {
 			data: {
@@ -101,7 +101,7 @@ export async function updateEventTaskList(eventId: AuthStateUserObject | string 
 		return Promise.reject(err.message);
 	}
 }
-export async function deleteExpanse(eventId: AuthStateUserObject | string | null, expanseId: string, user: UserFromServerType, expanseInfo) {
+export async function deleteExpanse(eventId: AuthStateUserObject | string | null, expanseId: string | number, user: UserFromServerType, expanseInfo) {
 	try {
 		const { data } = await api.patch(`events/deleteExpanse/${eventId}/${expanseId}`, expanseInfo, {
 			data: {

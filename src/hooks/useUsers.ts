@@ -24,7 +24,7 @@ const useUsers = (payloadData: AuthStateUserObject | string | null) => {
 		if (payloadData !== null) {
 			try {
 				setLoadingUser(true);
-				user = await getUser(id === undefined ? payloadData.email : id);
+				user = await getUser(id === undefined ? payloadData.email! : id);
 				setLoadingUser(false);
 				setError(null);
 				setUser(user);

@@ -9,10 +9,9 @@ interface CreateEventFormProps {
 	formik: FormikProps<RegisterNewUserEventType>;
 	value: Moment | Date | undefined;
 	isLoadingCreateEvent: boolean;
-	buttonText: string;
 }
 
-const CreateEventForm: FunctionComponent<CreateEventFormProps> = ({ formik, isLoadingCreateEvent, value, buttonText }) => {
+const CreateEventForm: FunctionComponent<CreateEventFormProps> = ({ formik, isLoadingCreateEvent, value }) => {
 	return (
 		<form onSubmit={formik.handleSubmit}>
 			<Stack
@@ -24,7 +23,6 @@ const CreateEventForm: FunctionComponent<CreateEventFormProps> = ({ formik, isLo
 					formik={formik}
 					value={value}
 					isLoadingCreateEvent={isLoadingCreateEvent}
-					buttonText={buttonText}
 				/>
 			</Stack>
 		</form>

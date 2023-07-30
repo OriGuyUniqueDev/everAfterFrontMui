@@ -15,4 +15,7 @@ export default interface EventToServerType {
 	mealPrice?: number;
 	tasks?: string[];
 	_id?: string;
+	totalGuestByList?: number;
+	groomSide?: number;
+	brideSide?: number;
 }

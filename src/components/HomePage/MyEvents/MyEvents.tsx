@@ -258,12 +258,13 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 												break;
 										}
 									}}
-									minDate={moment().calendar()}
+									// minDate={moment().calendar()}
+
 									sx={{ width: "20rem" }}
 									onChange={(newValue) => {
 										formik.setFieldValue("dateOfWedding", newValue, false);
 									}}
-									slotProps={{ textField: { InputLabelProps: { placeholder: "Wedding Date", style: { color: "#bbb" } }, helperText: formik.errors.dateOfWedding ? formik.errors.dateOfWedding : "Day/Month/Year", FormHelperTextProps: { style: { color: "#fff" } } } }}
+									slotProps={{ textField: { InputLabelProps: { placeholder: "Wedding Date", style: { color: "#bbb" } } } }}
 								/>
 								<FormControlLabel
 									control={

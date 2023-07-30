@@ -11,10 +11,9 @@ interface CreateEventInputsProps {
 	formik: FormikProps<RegisterNewUserEventType>;
 	value: Moment | Date | undefined;
 	isLoadingCreateEvent: boolean;
-	buttonText: string;
 }
 
-const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, value, isLoadingCreateEvent, buttonText }) => {
+const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, value, isLoadingCreateEvent }) => {
 	const { user } = useUserAndEventContext();
 	return (
 		<Stack gap={1}>
@@ -72,12 +71,12 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 							break;
 					}
 				}}
-				minDate={moment().calendar()}
+				// minDate={moment().calendar()}
 				sx={{ width: "20rem" }}
 				onChange={(newValue) => {
 					formik.setFieldValue("dateOfWedding", newValue, false);
 				}}
-				slotProps={{ textField: { InputLabelProps: { placeholder: "Wedding Date", style: { color: "#bbb" } }, helperText: formik.errors.dateOfWedding ? formik.errors.dateOfWedding : "Day/Month/Year", FormHelperTextProps: { style: { color: "#fff" } } } }}
+				slotProps={{ textField: { InputLabelProps: { placeholder: "Wedding Date", style: { color: "#bbb" } } } }}
 			/>
 			<FormControlLabel
 				control={
@@ -168,8 +167,6 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 					<>
 						<CircularProgress size={24} /> <Typography sx={{ color: "#fff", ml: 1 }}>Creating</Typography>
 					</>
-				) : buttonText !== "" ? (
-					buttonText
 				) : (
 					"Create New Event"
 				)}

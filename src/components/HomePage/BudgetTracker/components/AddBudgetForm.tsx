@@ -29,7 +29,7 @@ const AddBudgetForm: FunctionComponent<AddBudgetFormProps> = () => {
 			values.leftToSpend = values.budget;
 
 			try {
-				const res = await updateEvent(user.eventData, { budget: values.budget, leftToSpend: values.budget }, user.email);
+				const res = await updateEvent(user.eventData, { budget: values.budget, leftToSpend: values.budget }, user);
 				handleGetOneEvent();
 				addBudgetFormik.resetForm();
 			} catch (error) {
