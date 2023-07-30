@@ -4,6 +4,7 @@ import { getEvent } from "@/services/eventService";
 import { getAllUsers, getUser } from "@/services/userService";
 import { useState } from "react";
 import { AuthStateUserObject } from "react-auth-kit/dist/types";
+import { json } from "react-router-dom";
 
 const useEvents = (eventId: AuthStateUserObject | string | null, user: UserFromServerType) => {
 	const [event, setEvent] = useState<EventFromServerType>({
@@ -40,12 +41,15 @@ const useEvents = (eventId: AuthStateUserObject | string | null, user: UserFromS
 	const handleGetOneEvent = async () => {
 		try {
 			setLoadingEvent(true);
-			const event = await getEvent(eventId, user);
-			console.log(isLoadingEvent);
-
-			setError(null);
-			setEvent(event);
-			setLoadingEvent(false);
+			const eventFromServer = await getEvent(eventId, user);
+			if (JSON.stringify(eventFromServer) === JSON.stringify(event)) {
+				setLoadingEvent(false);
+				return;
+			} else {
+				setError(null);
+				setEvent(eventFromServer);
+				setLoadingEvent(false);
+			}
 		} catch (error) {
 			setLoadingEvent(false);
 			setError(error);
