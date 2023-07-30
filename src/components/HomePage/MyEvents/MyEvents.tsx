@@ -126,7 +126,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 			setListOfUsers(data);
 		};
 		getUsersEventData();
-	}, [isLoadingEvent]);
+	}, []);
 	return (
 		<ContentWrapper alignItemsPosition={""}>
 			<Stack width={"100%"}>

@@ -9,7 +9,7 @@ const TaskDataInfo: FunctionComponent<TaskDataInfoProps> = () => {
 	const { event, user, handleGetOneEvent, isLoadingEvent } = useUserAndEventContext();
 	useEffect(() => {
 		handleGetOneEvent();
-	}, [isLoadingEvent]);
+	}, []);
 	return (
 		<Stack>
 			<Typography

@@ -10,7 +10,7 @@ const ExpanseDataInfo: FunctionComponent<ExpanseDataInfoProps> = () => {
 	const { event, user, handleGetOneEvent, isLoadingEvent } = useUserAndEventContext();
 	useEffect(() => {
 		handleGetOneEvent();
-	}, [isLoadingEvent]);
+	}, []);
 	return (
 		<Stack>
 			<Typography
