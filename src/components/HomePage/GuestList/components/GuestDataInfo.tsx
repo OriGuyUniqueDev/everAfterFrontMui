@@ -9,7 +9,7 @@ const GuestDataInfo: FunctionComponent<GuestDataInfoProps> = () => {
 	const { event, user, handleGetOneEvent, isLoadingEvent } = useUserAndEventContext();
 	useEffect(() => {
 		handleGetOneEvent();
-	}, []);
+	}, [event]);
 	return (
 		<Stack>
 			<Typography

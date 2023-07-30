@@ -20,7 +20,8 @@ const LandingPage: FunctionComponent<LandingPageProps> = () => {
 		if (isAuthenticated()) {
 			navigate("/MyEverAfter");
 		}
-	}, []);
+		console.log("only on render");
+	});
 
 	return (
 		<>

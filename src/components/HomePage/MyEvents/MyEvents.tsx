@@ -21,7 +21,7 @@ import moment, { Moment } from "moment";
 interface MyEventsProps {}
 
 const MyEvents: FunctionComponent<MyEventsProps> = () => {
-	const { user, handleGetOneUser, isLoadingEvent, setUser, handleGetOneEvent, setEventDataInUser } = useUserAndEventContext();
+	const { user, handleGetOneUser, isLoadingEvent, setUser, handleGetOneEvent, setEventDataInUser, event } = useUserAndEventContext();
 	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
 	const [value, setValue] = useState<Moment | Date | undefined>(undefined);
 
@@ -126,7 +126,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 			setListOfUsers(data);
 		};
 		getUsersEventData();
-	}, []);
+	}, [event, user]);
 	return (
 		<ContentWrapper alignItemsPosition={""}>
 			<Stack width={"100%"}>

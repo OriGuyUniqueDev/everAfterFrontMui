@@ -25,7 +25,7 @@ const MyEverAfterCard: FunctionComponent<MyEverAfterCardProps> = ({ user }) => {
 
 	useEffect(() => {
 		handleGetOneEvent();
-	}, []);
+	}, [event]);
 
 	return (
 		<Box

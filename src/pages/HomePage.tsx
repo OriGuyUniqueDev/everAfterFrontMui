@@ -97,7 +97,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 
 	useEffect(() => {
 		handleGetOneUser();
-	}, []);
+	}, [user]);
 
 	return (
 		<ContentWrapper alignItemsPosition={"center"}>
