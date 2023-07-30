@@ -10,7 +10,7 @@ import UserFromServerType from "@/interfaces/UserFromServerType";
 import { ListOfUserType } from "@/interfaces/ListOfUserType";
 
 const api = axios.create({
-	baseURL: import.meta.env.VITE_SERVER_URL,
+	baseURL: import.meta.env.NODE_ENV === "dev" ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL_PROD,
 	headers: {
 		"Content-Type": "application/json",
 		Accept: "application/json",

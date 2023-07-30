@@ -6,7 +6,7 @@ import RegistrationDataType from "@/interfaces/RegistrationDataType";
 import { AuthStateUserObject } from "react-auth-kit/dist/types";
 
 const api = axios.create({
-	baseURL: import.meta.env.VITE_SERVER_URL,
+	baseURL: import.meta.env.NODE_ENV === "dev" ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL_PROD,
 	headers: {
 		"Content-Type": "application/json",
 		Accept: "application/json",
