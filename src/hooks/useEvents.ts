@@ -41,10 +41,11 @@ const useEvents = (eventId: AuthStateUserObject | string | null, user: UserFromS
 		try {
 			setLoadingEvent(true);
 			const event = await getEvent(eventId, user);
+			console.log(isLoadingEvent);
 
-			setLoadingEvent(false);
 			setError(null);
 			setEvent(event);
+			setLoadingEvent(false);
 		} catch (error) {
 			setLoadingEvent(false);
 			setError(error);
