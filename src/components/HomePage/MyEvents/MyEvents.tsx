@@ -124,9 +124,11 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 		const getUsersEventData = async () => {
 			const data = await findAllBusinessUsersEvents(user.email, user);
 			setListOfUsers(data);
+			console.log(listOfUsers);
 		};
+
 		getUsersEventData();
-	}, [event, user]);
+	}, []);
 	return (
 		<ContentWrapper alignItemsPosition={""}>
 			<Stack width={"100%"}>
