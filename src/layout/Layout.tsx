@@ -1,6 +1,7 @@
 import Footer from "@/components/HomePage/Footer/Footer";
 import NavbarHomePage from "@/components/HomePage/NavbarHomePage/NavbarHomePage";
 import NavbarLandingPage from "@/components/LandingPage/NavbarLandingPage/NavbarLandingPage";
+import { Box, Stack } from "@mui/system";
 import React, { FunctionComponent } from "react";
 import { useIsAuthenticated } from "react-auth-kit";
 
@@ -14,8 +15,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
 	return (
 		<>
 			{isAuthenticated ? <NavbarHomePage /> : <NavbarLandingPage />}
-
-			{children}
+			<Box position={"relative"}>{children}</Box>
 			<Footer />
 		</>
 	);

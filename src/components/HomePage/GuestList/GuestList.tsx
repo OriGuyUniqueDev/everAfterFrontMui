@@ -60,7 +60,7 @@ const GuestList: FunctionComponent<GuestListProps> = () => {
 								<Stack width={"100%"}>
 									<Typography
 										variant="body1"
-										fontSize={"5rem"}
+										sx={{ fontSize: { xs: "3.5rem", lg: "5rem" } }}
 										fontWeight={400}
 										color={"#81C784"}
 									>

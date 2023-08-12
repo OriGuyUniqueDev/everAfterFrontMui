@@ -26,19 +26,23 @@ const BudgetTracker: FunctionComponent<BudgetTrackerProps> = () => {
 
 	return (
 		<ContentWrapper alignItemsPosition={""}>
-			<Stack width={"100%"}>
+			<Stack
+				my={3}
+				width={"100%"}
+				minHeight={"100vh"}
+			>
 				<Stack spacing={"2.1rem"}>
 					<Typography
 						marginTop={"2.1rem"}
 						variant="h1"
-						fontSize={"3.75rem"}
+						sx={{ fontSize: { xs: "2.5rem", lg: "3.75rem" } }}
 						fontWeight={400}
 					>
 						MyBudget
 					</Typography>
 					<Typography
 						variant="body1"
-						fontSize={"1.5rem"}
+						sx={{ fontSize: { xs: "1.2rem", lg: "1.5rem" } }}
 						fontWeight={400}
 					>
 						Keep track of your wedding expenses and stay on budget with ease.
@@ -47,7 +51,7 @@ const BudgetTracker: FunctionComponent<BudgetTrackerProps> = () => {
 						{event.budget > 0 ? (
 							<Typography
 								variant="body1"
-								fontSize={"5rem"}
+								sx={{ fontSize: { xs: "3.5rem", lg: "5rem" } }}
 								fontWeight={400}
 								color={"#81C784"}
 							>
@@ -73,17 +77,21 @@ const BudgetTracker: FunctionComponent<BudgetTrackerProps> = () => {
 						<Stack
 							width={"100%"}
 							height={"23.5rem"}
-							direction={"row"}
+							// direction={"row"}
+							sx={{ flexDirection: { xs: "column", md: "row" } }}
 							justifyContent="space-between"
 						>
 							<Grid
-								sx={{ border: "3px solid #7986CB", boxShadow: "0px 4px 26px 14px #232C43", borderRadius: "0.625rem", padding: "1.5rem 1.25rem" }}
-								direction="row"
+								sx={{ border: "3px solid #7986CB", boxShadow: "0px 4px 26px 14px #232C43", borderRadius: "0.625rem", padding: "1.5rem 1.25rem", flexDirection: { xs: "column", md: "row" } }}
 								width={"100%"}
 								justifyContent={"space-between"}
 								container
 							>
-								<Grid xs={5}>
+								<Grid
+									xs={12}
+									md={5}
+									mb={2}
+								>
 									<ExpanseDataInfo />
 								</Grid>
 								<Grid xs={0}>
@@ -93,7 +101,10 @@ const BudgetTracker: FunctionComponent<BudgetTrackerProps> = () => {
 									/>
 								</Grid>
 								{/* add expanse form */}
-								<Grid xs={6}>
+								<Grid
+									xs={12}
+									md={6}
+								>
 									<AddExpanseForm />
 								</Grid>
 							</Grid>
