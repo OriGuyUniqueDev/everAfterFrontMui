@@ -15,8 +15,6 @@
 		"isolatedModules": true,
 		"jsx": "react-jsx",
 		"incremental": true,
-		"useUnknownInCatchVariables": false,
-		"allowSyntheticDefaultImports": true,
 		"paths": {
 			"@/*": ["./src/*"]
 		}
