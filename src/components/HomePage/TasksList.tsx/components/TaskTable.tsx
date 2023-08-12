@@ -21,7 +21,6 @@ const TaskTable: FunctionComponent<TaskTableProps> = () => {
 						<TableCell align="center">Name</TableCell>
 						<TableCell align="center">H/L</TableCell>
 						<TableCell align="center">Done?</TableCell>
-						<TableCell align="center">Action</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
@@ -35,11 +34,10 @@ const TaskTable: FunctionComponent<TaskTableProps> = () => {
 							</TableCell>
 							<TableCell align="center">{task.task}</TableCell>
 							<TableCell align="center">{task.priority}</TableCell>
-							<TableCell align="center">{task.completed ? "✔️" : "❌"}</TableCell>
 							<TableCell align="center">
 								<IconButton
 									aria-label="delete"
-									color="error"
+									color="success"
 									onClick={async () => {
 										try {
 											const isConfirm = confirm(`Are You Sure you want to DELETE ${task.task} ?`);
