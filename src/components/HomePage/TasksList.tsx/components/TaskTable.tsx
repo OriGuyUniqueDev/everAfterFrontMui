@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 import { deleteGuest, deleteTask } from "@/services/eventService";
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Paper } from "@mui/material";
 import { FunctionComponent } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
@@ -12,16 +12,16 @@ const TaskTable: FunctionComponent<TaskTableProps> = () => {
 	return (
 		<TableContainer>
 			<Table
-				sx={{ width: "80%", mx: "auto", overflow: "scroll" }}
+				sx={{ maxWidth: "100%" }}
 				aria-label="simple table"
 			>
 				<TableHead>
 					<TableRow>
 						<TableCell>ID</TableCell>
-						<TableCell align="center">Task Name</TableCell>
-						<TableCell align="center">High or Low Side?</TableCell>
-						<TableCell align="center">Completed?</TableCell>
-						<TableCell align="center">Actions</TableCell>
+						<TableCell align="center">Name</TableCell>
+						<TableCell align="center">H/L</TableCell>
+						<TableCell align="center">Done?</TableCell>
+						<TableCell align="center">Action</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

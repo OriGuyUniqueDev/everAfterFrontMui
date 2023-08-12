@@ -53,7 +53,13 @@ const FeaturesSection: FunctionComponent<FeaturesSectionProps> = () => {
 		<span id="feature">
 			<ContentWrapper alignItemsPosition={"start"}>
 				<Stack width={"100%"}>
-					<Typography marginBottom={15} fontSize={{ xs: 56, md: 70, lg: 60 }} sx={{ textDecoration: "underline", textAlign: "center", width: "100%" }} variant="h1" color={"text.primary"}>
+					<Typography
+						marginBottom={{ xs: 5, md: 15 }}
+						fontSize={{ xs: 40, md: 70, lg: 60 }}
+						sx={{ textDecoration: "underline", textAlign: "center", width: "100%" }}
+						variant="h1"
+						color={"text.primary"}
+					>
 						Features
 					</Typography>
 					<FeatureCardContainer featureData={featureData} />

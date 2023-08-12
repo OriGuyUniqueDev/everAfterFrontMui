@@ -5,7 +5,7 @@ export default function useDrawers() {
 	const [openLoginDrawer, setOpenLoginDrawer] = useState(false);
 	const [openRegDrawer, setRegDrawer] = useState(false);
 	const handleOpenDrawerMenu = () => {
-		setOpenDrawerMenu(!isOpenDrawerMenu);
+		setOpenDrawerMenu((prev) => !prev);
 	};
 	const handleLoginOpen = () => {
 		setOpenLoginDrawer((prev) => !prev);

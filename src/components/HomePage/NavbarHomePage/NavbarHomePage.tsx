@@ -15,20 +15,40 @@ interface NavbarHomePageProps {}
 const NavbarHomePage: FunctionComponent<NavbarHomePageProps> = () => {
 	const { functions, useStates } = useDrawers();
 	return (
-		<AppBar position="relative" sx={{ bgcolor: "transparent" }}>
+		<AppBar
+			position="relative"
+			sx={{ bgcolor: "transparent" }}
+		>
 			<ToastContainer />
 			<Container maxWidth="xl">
 				<Toolbar>
-					<Stack gap={3} direction={"row"} justifyContent="space-between" alignItems={"center"} width={"100%"}>
+					<Stack
+						gap={3}
+						direction={"row"}
+						justifyContent="space-between"
+						alignItems={"center"}
+						width={"100%"}
+					>
 						<HomePageNavLeftSide />
 						<HomePageNavButtons showButtons={false} />
 						<LandingPageHamburger handleOpenDrawer={functions.openMenu} />
 					</Stack>
 				</Toolbar>
 			</Container>
-			<DrawerNavBar isOpenDrawer={useStates.openMenu.isOpenDrawerMenu} handleOpenDrawer={functions.openMenu} openRegPageHandler={functions.openRegistrationDrawer} />
-			<LoginPage handleClickOpen={functions.openLoginSection} open={useStates.openLoginSection.openLoginDrawer} />
-			<RegistrationPage handleClickOpen={functions.openRegistrationDrawer} open={useStates.openRegistrationDrawer.openRegDrawer} />
+			<DrawerNavBar
+				isOpenDrawer={useStates.openMenu.isOpenDrawerMenu}
+				handleOpenDrawer={functions.openMenu}
+				openRegPageHandler={functions.openRegistrationDrawer}
+				openLoginPageHandler={functions.openLoginSection}
+			/>
+			<LoginPage
+				handleClickOpen={functions.openLoginSection}
+				open={useStates.openLoginSection.openLoginDrawer}
+			/>
+			<RegistrationPage
+				handleClickOpen={functions.openRegistrationDrawer}
+				open={useStates.openRegistrationDrawer.openRegDrawer}
+			/>
 		</AppBar>
 	);
 };

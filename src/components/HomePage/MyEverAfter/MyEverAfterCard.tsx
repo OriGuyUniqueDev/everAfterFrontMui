@@ -29,8 +29,9 @@ const MyEverAfterCard: FunctionComponent<MyEverAfterCardProps> = ({ user }) => {
 
 	return (
 		<Box
-			sx={{ border: "3px solid #7986CB", boxShadow: "0px 4px 26px 14px #232C43", borderRadius: "0.625rem", padding: "1.5rem 1.25rem", display: "flex", flexDirection: "column", gap: "0.625rem" }}
+			sx={{ border: "3px solid #7986CB", boxShadow: "0px 4px 26px 14px #232C43", borderRadius: "0.625rem", padding: "1.5rem 1.25rem", display: "flex", flexDirection: "column", gap: "0.625rem", overflowX: "auto" }}
 			minWidth={"21rem"}
+			mb={6}
 		>
 			<Typography
 				variant="body1"

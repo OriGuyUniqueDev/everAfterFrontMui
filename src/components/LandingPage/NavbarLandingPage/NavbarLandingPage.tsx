@@ -42,6 +42,7 @@ const NavbarLandingPage: FunctionComponent<NavbarLandingPageProps> = () => {
 							showButtons={false}
 							openLoginPageHandler={functions.openLoginSection}
 							openRegPageHandler={functions.openRegistrationDrawer}
+							handleOpenDrawer={functions.openMenu}
 						/>
 					</Stack>
 					<LandingPageHamburger handleOpenDrawer={functions.openMenu} />
@@ -51,6 +52,7 @@ const NavbarLandingPage: FunctionComponent<NavbarLandingPageProps> = () => {
 				isOpenDrawer={useStates.openMenu.isOpenDrawerMenu}
 				handleOpenDrawer={functions.openMenu}
 				openRegPageHandler={functions.openRegistrationDrawer}
+				openLoginPageHandler={functions.openLoginSection}
 			/>
 			<LoginPage
 				handleClickOpen={functions.openLoginSection}

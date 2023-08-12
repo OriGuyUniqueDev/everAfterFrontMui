@@ -15,14 +15,14 @@ const WelcomeMyEverAfter: FunctionComponent<WelcomeMyEverAfterProps> = ({ user }
 				marginTop={5}
 				textAlign={"center"}
 				variant="h1"
-				fontSize={70}
+				fontSize={{ xs: 38, md: 70, lg: 60 }}
 			>
 				{!user.businessAccount ? `Welcome ${user.brideName} & ${user.groomName}` : `Welcome ${user.fullName}`}
 			</Typography>
 			<Typography
 				width={"100%"}
 				marginTop={5}
-				fontSize={22}
+				fontSize={20}
 				textAlign={"center"}
 				variant="body1"
 			>

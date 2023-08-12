@@ -29,7 +29,7 @@ const BudgetTracker: FunctionComponent<BudgetTrackerProps> = () => {
 			<Stack
 				my={3}
 				width={"100%"}
-				minHeight={"100vh"}
+				// sx={{ flexDirection: { xs: "column", md: "row" } }}
 			>
 				<Stack spacing={"2.1rem"}>
 					<Typography
@@ -47,7 +47,7 @@ const BudgetTracker: FunctionComponent<BudgetTrackerProps> = () => {
 					>
 						Keep track of your wedding expenses and stay on budget with ease.
 					</Typography>
-					<Stack marginTop={"4.13rem"}>
+					<Stack marginTop={{ xs: "0rem", md: "4.13rem" }}>
 						{event.budget > 0 ? (
 							<Typography
 								variant="body1"
@@ -76,7 +76,7 @@ const BudgetTracker: FunctionComponent<BudgetTrackerProps> = () => {
 					<>
 						<Stack
 							width={"100%"}
-							height={"23.5rem"}
+							// height={"23.5rem"}
 							// direction={"row"}
 							sx={{ flexDirection: { xs: "column", md: "row" } }}
 							justifyContent="space-between"
@@ -94,10 +94,13 @@ const BudgetTracker: FunctionComponent<BudgetTrackerProps> = () => {
 								>
 									<ExpanseDataInfo />
 								</Grid>
-								<Grid xs={0}>
+								<Grid
+									xs={12}
+									md={0}
+								>
 									<Divider
-										orientation="vertical"
-										sx={{ backgroundColor: "#7986CB", width: "0.25rem", borderRadius: 9999 }}
+										orientation="horizontal"
+										sx={{ backgroundColor: "#7986CB", borderBottomWidth: 5, mb: { xs: 2, md: 0 }, borderRadius: 9999 }}
 									/>
 								</Grid>
 								{/* add expanse form */}

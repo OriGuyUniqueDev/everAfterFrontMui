@@ -25,14 +25,15 @@ const Footer: FunctionComponent<FooterProps> = () => {
 								variant="h5"
 								fontFamily={"Pacifico"}
 								noWrap
-								sx={{ letterSpacing: "0.1rem" }}
+								sx={{ letterSpacing: "0.1rem", fontSize: { xs: 10, md: 20 } }}
 							>
 								EverAfter
 							</Typography>
 						</NavLink>
 						<Typography
 							variant="body1"
-							noWrap
+							// noWrap
+							sx={{ fontSize: { xs: 10, md: 20 }, overflowX: "auto", textAlign: { xs: "center", md: "left" } }}
 						>
 							Designed and Developed By Ori Guy, Want To Hire Me?{" "}
 							<a

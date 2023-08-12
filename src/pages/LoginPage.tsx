@@ -69,7 +69,7 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 				<form onSubmit={formik.handleSubmit}>
 					<Stack
 						spacing={2}
-						sx={{ mx: 10, my: 5 }}
+						sx={{ mx: { xs: 2, md: 10 }, my: 5, overflowX: "auto" }}
 					>
 						<TopSectionLogin />
 						<InputSectionLogin formik={formik} />

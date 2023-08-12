@@ -10,15 +10,15 @@ interface ExpenseTableProps {}
 const ExpenseTable: FunctionComponent<ExpenseTableProps> = () => {
 	const { event, user, handleGetOneEvent } = useUserAndEventContext();
 	return (
-		<TableContainer>
+		<TableContainer sx={{ overflowX: "auto" }}>
 			<Table
-				sx={{ width: "80%", mx: "auto", overflow: "scroll" }}
+				sx={{ width: "80%", mx: "auto", overflowY: "scroll" }}
 				aria-label="simple table"
 			>
 				<TableHead>
 					<TableRow>
 						<TableCell>ID</TableCell>
-						<TableCell align="center">Expense Name</TableCell>
+						<TableCell align="center"> Name</TableCell>
 						<TableCell align="center">Price</TableCell>
 						<TableCell align="center">Deposit</TableCell>
 						<TableCell align="center">Actions</TableCell>

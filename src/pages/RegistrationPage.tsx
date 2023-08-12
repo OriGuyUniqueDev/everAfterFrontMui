@@ -109,7 +109,7 @@ const RegistrationPage: FunctionComponent<RegistrationPageProps> = ({ handleClic
 				<form onSubmit={formik.handleSubmit}>
 					<Stack
 						spacing={2}
-						sx={{ mx: 10, my: 5 }}
+						sx={{ mx: { xs: 2, md: 10 }, my: 5, overflowX: "auto" }}
 					>
 						<RegisterTopSection />
 						<Stack

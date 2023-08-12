@@ -19,8 +19,8 @@ const GuestTable: FunctionComponent<GuestTableProps> = () => {
 				<TableHead>
 					<TableRow>
 						<TableCell>ID</TableCell>
-						<TableCell align="center">Guest Name</TableCell>
-						<TableCell align="center">Groom or Bride Side?</TableCell>
+						<TableCell align="center">Name</TableCell>
+						<TableCell align="center">G/B Side?</TableCell>
 						<TableCell align="center">Amount</TableCell>
 						<TableCell align="center">Actions</TableCell>
 					</TableRow>

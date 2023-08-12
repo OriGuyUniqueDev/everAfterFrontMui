@@ -11,10 +11,23 @@ interface FeatureCardContainerProps {
 
 const FeatureCardContainer: FunctionComponent<FeatureCardContainerProps> = ({ featureData }) => {
 	return (
-		<Grid justifyContent={"space-evenly"} spacing={10} alignItems={"stretch"} container>
+		<Grid
+			justifyContent={"space-evenly"}
+			spacing={{ xs: 5, md: 10 }}
+			alignItems={"stretch"}
+			container
+		>
 			{featureData.length > 0 ? (
 				featureData.map((featureCard) => {
-					return <FeatureCard key={featureCard.cardHeader} cardHeader={featureCard.cardHeader} cardContent={featureCard.cardContent} imgSrc={featureCard.imgSrc} imgAlt={featureCard.imgAlt} />;
+					return (
+						<FeatureCard
+							key={featureCard.cardHeader}
+							cardHeader={featureCard.cardHeader}
+							cardContent={featureCard.cardContent}
+							imgSrc={featureCard.imgSrc}
+							imgAlt={featureCard.imgAlt}
+						/>
+					);
 				})
 			) : (
 				<Typography color={"error"}>Oops, no feature to show</Typography>

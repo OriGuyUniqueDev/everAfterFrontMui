@@ -123,14 +123,6 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 						marginTop={4}
 					>
 						<MyEverAfterCard user={user} />
-						{/* <MyEverAfterCard
-							user={user}
-							event={event}
-						/>
-						<MyEverAfterCard
-							user={user}
-							event={event}
-						/> */}
 					</Stack>
 				</Stack>
 			)}

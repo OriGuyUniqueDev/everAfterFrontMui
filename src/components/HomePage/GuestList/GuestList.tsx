@@ -42,19 +42,19 @@ const GuestList: FunctionComponent<GuestListProps> = () => {
 					<Typography
 						marginTop={"2.1rem"}
 						variant="h1"
-						fontSize={"3.75rem"}
+						sx={{ fontSize: { xs: "2.5rem", lg: "3.75rem" } }}
 						fontWeight={400}
 					>
 						MyGuests
 					</Typography>
 					<Typography
 						variant="body1"
-						fontSize={"1.5rem"}
+						sx={{ fontSize: { xs: "1.2rem", lg: "1.5rem" } }}
 						fontWeight={400}
 					>
 						Manage Your Wedding Guest List Effortlessly{" "}
 					</Typography>
-					<Stack marginTop={"4.13rem"}>
+					<Stack marginTop={{ xs: "0rem", md: "4.13rem" }}>
 						{event.numOfGuest > 0 ? (
 							<>
 								<Stack width={"100%"}>
@@ -77,28 +77,37 @@ const GuestList: FunctionComponent<GuestListProps> = () => {
 									</Typography>
 									<Stack
 										width={"100%"}
-										height={"23.5rem"}
-										direction={"row"}
+										// height={"23.5rem"}
+										sx={{ flexDirection: { xs: "column", md: "row" } }}
 										justifyContent="space-between"
 									>
 										<Grid
-											sx={{ border: "3px solid #7986CB", boxShadow: "0px 4px 26px 14px #232C43", borderRadius: "0.625rem", padding: "1.5rem 1.25rem" }}
-											direction="row"
+											sx={{ border: "3px solid #7986CB", boxShadow: "0px 4px 26px 14px #232C43", borderRadius: "0.625rem", padding: "1.5rem 1.25rem", flexDirection: { xs: "column", md: "row" } }}
 											width={"100%"}
 											justifyContent={"space-between"}
 											container
 										>
-											<Grid xs={5}>
+											<Grid
+												xs={12}
+												md={5}
+												mb={2}
+											>
 												<GuestDataInfo />
 											</Grid>
-											<Grid xs={0}>
+											<Grid
+												xs={12}
+												md={0}
+											>
 												<Divider
-													orientation="vertical"
-													sx={{ backgroundColor: "#7986CB", width: "0.25rem", borderRadius: 9999 }}
+													orientation="horizontal"
+													sx={{ backgroundColor: "#7986CB", borderBottomWidth: 5, mb: { xs: 2, md: 0 }, borderRadius: 9999 }}
 												/>
 											</Grid>
 											{/* add expanse form */}
-											<Grid xs={6}>
+											<Grid
+												xs={12}
+												md={6}
+											>
 												<AddGuestForm />
 											</Grid>
 										</Grid>

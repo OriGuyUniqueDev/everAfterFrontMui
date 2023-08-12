@@ -12,14 +12,33 @@ interface FeatureCardProps {
 
 const FeatureCard: FunctionComponent<FeatureCardProps> = ({ imgSrc, cardHeader, cardContent, imgAlt }) => {
 	return (
-		<Grid sm={12} md={6} lg={4}>
-			<Card sx={{ display: "flex", height: 250, flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 3 }}>
-				<img src={imgSrc} alt={imgAlt} />
+		<Grid
+			sm={12}
+			md={6}
+			lg={4}
+		>
+			<Card sx={{ display: "flex", height: { xs: "fit", md: 250 }, flexDirection: "column", alignItems: "center", justifyContent: "center", gap: { xs: 0, md: 3 }, pt: { xs: 2, md: 0 } }}>
+				<img
+					src={imgSrc}
+					alt={imgAlt}
+				/>
 				<CardContent sx={{ display: "flex", flexDirection: "column", placeItems: "center", gap: 2 }}>
-					<Typography gutterBottom color={"secondary"} sx={{ textDecoration: "underline" }} variant={"h3"} fontSize={32} component={"h4"}>
+					<Typography
+						gutterBottom
+						color={"secondary"}
+						sx={{ textDecoration: "underline" }}
+						variant={"h3"}
+						fontSize={{ xs: 24, md: 32 }}
+						component={"h4"}
+					>
 						{cardHeader}
 					</Typography>
-					<Typography variant={"body1"} fontSize={16} textAlign={"center"} component={"p"}>
+					<Typography
+						variant={"body1"}
+						fontSize={16}
+						textAlign={"center"}
+						component={"p"}
+					>
 						{cardContent}
 					</Typography>
 				</CardContent>
