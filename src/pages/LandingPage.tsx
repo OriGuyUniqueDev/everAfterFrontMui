@@ -21,7 +21,7 @@ const LandingPage: FunctionComponent<LandingPageProps> = () => {
 			navigate("/MyEverAfter");
 		}
 		console.log("only on render");
-	});
+	}, []);
 
 	return (
 		<>
