@@ -81,7 +81,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 			try {
 				setLoadingCreateEvent(true);
 
-				const res = await createEvent(values, true);
+				const res = await createEvent(values);
 
 				successMsg("Event Created");
 				handleGetOneUser();

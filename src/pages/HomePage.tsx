@@ -81,7 +81,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 			try {
 				setLoadingCreateEvent(true);
 
-				const res = await createEvent(values, false);
+				const res = await createEvent(values);
 
 				successMsg("Event Created");
 				handleGetOneUser();

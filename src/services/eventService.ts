@@ -17,9 +17,9 @@ const api = axios.create({
 		Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 	},
 });
-export async function createEvent(eventData: RegisterNewUserEventType, openNewUser: boolean) {
+export async function createEvent(eventData: RegisterNewUserEventType) {
 	return await api
-		.post("events", { eventData, openNewUser })
+		.post("events", eventData)
 		.then((res) => res.data)
 		.then((err) => err);
 }
