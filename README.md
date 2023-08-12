@@ -17,7 +17,6 @@
 
 - **Demo Private User:** Username: demo@gmail.com, Password: demo123.
 - **Demo Business User:** Username: demobus@gmail.com, Password: demo123.
-- Instructions to navigate the site and perform common tasks.
 
 ## 4. Development Environment
 
