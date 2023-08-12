@@ -182,7 +182,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 									navigate("/MyEverAfter");
 								}}
 							>
-								❤️ {userInArray.brideName} & {userInArray.groomName} event 🎉
+								{userInArray.brideName} & {userInArray.groomName} event ❤️
 							</Typography>
 						);
 					})}
@@ -196,7 +196,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 					<Box sx={style}>
 						<Typography
 							fontSize={26}
-							textAlign="center"
+							textAlign="left"
 							fontWeight={600}
 							variant="body1"
 						>
@@ -232,7 +232,6 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 									value={formik.values.connectedUser}
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
-									required
 									margin="dense"
 									id="connectedUser"
 									label="Connect the event to ?"
