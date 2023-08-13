@@ -43,6 +43,8 @@ const useUsers = (payloadData: AuthStateUserObject | string | null) => {
 					eventData: "",
 				});
 			}
+		} else {
+			return "";
 		}
 	};
 	const handleGetAllUsers = async () => {

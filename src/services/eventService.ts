@@ -8,7 +8,8 @@ import EventToServerType from "@/interfaces/EventToServerType";
 import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
 import UserFromServerType from "@/interfaces/UserFromServerType";
 import { ListOfUserType } from "@/interfaces/ListOfUserType";
-
+import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
+const { everAfterAuth } = useUserAndEventContext();
 const api = axios.create({
 	baseURL: import.meta.env.NODE_ENV === "dev" ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL_PROD,
 	headers: {
@@ -16,7 +17,7 @@ const api = axios.create({
 		"Access-Control-Allow-Origin": "https://ever-after.netlify.app/",
 		"Access-Control-Allow-Credentials": true,
 		Accept: "application/json",
-		Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
+		Authorization: `Bearer ${everAfterAuth}`,
 	},
 });
 export async function createEvent(eventData: RegisterNewUserEventType) {
