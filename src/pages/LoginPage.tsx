@@ -3,6 +3,7 @@ import ActionSectionLogin from "@/components/LandingPage/LoginPageSection/Action
 import InputSectionLogin from "@/components/LandingPage/LoginPageSection/InputSectionLogin";
 import TopSectionLogin from "@/components/LandingPage/LoginPageSection/TopSectionLogin";
 import FormikLoginConfig from "@/configuration/FormikLoginConfig";
+import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 import useDrawers from "@/hooks/useDrawers";
 import LoginDataType from "@/interfaces/LoginDataType";
 import LoginUserServerResType from "@/interfaces/LoginUserServerResType";
@@ -27,6 +28,7 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 	const signIn = useSignIn();
 	const navigate = useNavigate();
 	const [isLoading, setLoading] = useState(false);
+	const { handleGetOneEvent, handleGetOneUser } = useUserAndEventContext();
 	const formik = useFormik<LoginDataType>({
 		initialValues: {
 			email: "",
@@ -47,6 +49,8 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ handleClickOpen, open })
 					tokenType: "Bearer",
 					authState: { email: res.email, id: res.id, typeOfUser: res.typeOfUser, eventUser: res.eventUser },
 				});
+				handleGetOneEvent();
+				handleGetOneUser();
 				successMsg("welcome");
 				setLoading(false);
 				handleClickOpen();
