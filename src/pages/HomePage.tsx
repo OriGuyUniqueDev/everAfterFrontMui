@@ -25,7 +25,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 	const [value, setValue] = useState<Moment | Date | undefined>(undefined);
 	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
 	const data = auth();
-	const { event, handleGetOneEvent, handleGetOneUser, user } = useUserAndEventContext();
+	const { event, handleGetOneEvent, handleGetOneUser, user, isLoadingEvent } = useUserAndEventContext();
 
 	const formik = useFormik<RegisterNewUserEventType>({
 		initialValues: {
@@ -98,7 +98,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 	useEffect(() => {
 		handleGetOneUser();
 		handleGetOneEvent();
-	});
+	}, []);
 
 	return (
 		<ContentWrapper alignItemsPosition={"center"}>
