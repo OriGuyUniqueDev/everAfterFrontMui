@@ -101,8 +101,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 	useEffect(() => {
 		handleGetOneUser();
 		handleGetOneEvent();
-		navigate("/MyEverAfter");
-	}, []);
+	}, [user]);
 
 	return (
 		<ContentWrapper alignItemsPosition={"center"}>
