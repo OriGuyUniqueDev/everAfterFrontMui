@@ -17,6 +17,7 @@ import * as yup from "yup";
 import MyEverAfterCard from "@/components/HomePage/MyEverAfter/MyEverAfterCard";
 import { Moment } from "moment";
 import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
+import { useNavigate } from "react-router-dom";
 
 interface HomePageProps {}
 
@@ -24,6 +25,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 	const auth = useAuthUser();
 	const [value, setValue] = useState<Moment | Date | undefined>(undefined);
 	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
+	const navigate = useNavigate();
 
 	const data = auth();
 	const { event, handleGetOneEvent, handleGetOneUser, user, isLoadingEvent } = useUserAndEventContext();
@@ -99,7 +101,8 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 	useEffect(() => {
 		handleGetOneUser();
 		handleGetOneEvent();
-	}, [data]);
+		navigate("/MyEverAfter");
+	}, []);
 
 	return (
 		<ContentWrapper alignItemsPosition={"center"}>
