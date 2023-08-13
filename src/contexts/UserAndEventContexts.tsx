@@ -25,6 +25,8 @@ type UserAndEventContextProps = {
 export const UserAndEventContextProvider: FC<UserAndEventContextProps> = ({ children }) => {
 	const auth = useAuthUser();
 	let payloadData = auth();
+	console.log(payloadData);
+
 	const { user, handleGetOneUser, isLoadingUser, setUser, setEventDataInUser } = useUsers(payloadData);
 	const { event, handleGetOneEvent, isLoadingEvent } = useEvents(user.eventData, user);
 
