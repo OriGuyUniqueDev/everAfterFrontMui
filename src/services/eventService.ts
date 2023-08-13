@@ -17,12 +17,16 @@ const api = axios.create({
 		"Access-Control-Allow-Origin": "https://ever-after.netlify.app/",
 		"Access-Control-Allow-Credentials": true,
 		Accept: "application/json",
-		Authorization: `Bearer ${everAfterAuth}`,
+		Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 	},
 });
 export async function createEvent(eventData: RegisterNewUserEventType) {
 	return await api
-		.post("events", eventData)
+		.post("events", eventData, {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
+			},
+		})
 		.then((res) => res.data)
 		.then((err) => err);
 }
@@ -31,6 +35,9 @@ export async function getEvent(eventId: AuthStateUserObject | string | null | an
 		const { data } = await api.get(`events/${eventId}`, {
 			data: {
 				email: user.email,
+			},
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 			},
 		});
 
@@ -45,6 +52,9 @@ export async function findAllBusinessUsersEvents(userId: AuthStateUserObject | s
 			data: {
 				email: user.email,
 			},
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
+			},
 		});
 
 		return data as ListOfUserType[];
@@ -57,6 +67,9 @@ export async function updateEvent(eventId: AuthStateUserObject | string | null, 
 		const { data } = await api.patch(`events/${eventId}`, updatedData, {
 			data: {
 				email: user.email,
+			},
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 			},
 		});
 
@@ -71,6 +84,9 @@ export async function updateEventExpanse(eventId: AuthStateUserObject | string |
 			data: {
 				email: user.email,
 			},
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
+			},
 		});
 
 		return data;
@@ -83,6 +99,9 @@ export async function updateEventGuestList(eventId: AuthStateUserObject | string
 		const { data } = await api.patch(`events/updateGuest/${eventId}`, updatedData, {
 			data: {
 				email: user.email,
+			},
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 			},
 		});
 
@@ -97,6 +116,9 @@ export async function updateEventTaskList(eventId: AuthStateUserObject | string 
 			data: {
 				email: user.email,
 			},
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
+			},
 		});
 
 		return data;
@@ -109,6 +131,9 @@ export async function deleteExpanse(eventId: AuthStateUserObject | string | null
 		const { data } = await api.patch(`events/deleteExpanse/${eventId}/${expanseId}`, expanseInfo, {
 			data: {
 				email: user.email,
+			},
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 			},
 		});
 
@@ -123,6 +148,9 @@ export async function deleteGuest(eventId: AuthStateUserObject | string | null, 
 			data: {
 				email: user.email,
 			},
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
+			},
 		});
 
 		return data;
@@ -135,6 +163,9 @@ export async function deleteTask(eventId: AuthStateUserObject | string | null, t
 		const { data } = await api.patch(`events/deleteTask/${eventId}/${taskId}`, taskInfo, {
 			data: {
 				email: user.email,
+			},
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 			},
 		});
 

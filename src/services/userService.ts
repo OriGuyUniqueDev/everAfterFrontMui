@@ -31,7 +31,11 @@ export async function register(userData: RegistrationDataType) {
 }
 export async function getUser(userEmail: AuthStateUserObject | string | null) {
 	try {
-		const { data } = await api.get(`users/${userEmail}`);
+		const { data } = await api.get(`users/${userEmail}`, {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
+			},
+		});
 
 		return data;
 	} catch (err) {
@@ -43,6 +47,9 @@ export async function updateUser(userEmail: AuthStateUserObject | string | null,
 		const { data } = await api.patch(`users/${userEmail}`, updateUserData, {
 			data: {
 				email: user.email,
+			},
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 			},
 		});
 
