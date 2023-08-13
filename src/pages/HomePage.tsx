@@ -24,6 +24,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 	const auth = useAuthUser();
 	const [value, setValue] = useState<Moment | Date | undefined>(undefined);
 	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
+	const [render, setRender] = useState(false);
 	const data = auth();
 	const { event, handleGetOneEvent, handleGetOneUser, user, isLoadingEvent } = useUserAndEventContext();
 
@@ -98,7 +99,8 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 	useEffect(() => {
 		handleGetOneUser();
 		handleGetOneEvent();
-	}, []);
+		setRender(!render);
+	}, [render]);
 
 	return (
 		<ContentWrapper alignItemsPosition={"center"}>
