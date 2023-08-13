@@ -9,6 +9,7 @@ const api = axios.create({
 	baseURL: import.meta.env.NODE_ENV === "dev" ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL_PROD,
 	headers: {
 		"Content-Type": "application/json",
+		"Access-Control-Allow-Origin": "*",
 		Accept: "application/json",
 		Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 	},
