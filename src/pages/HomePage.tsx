@@ -97,6 +97,7 @@ const HomePage: FunctionComponent<HomePageProps> = () => {
 
 	useEffect(() => {
 		handleGetOneUser();
+		handleGetOneEvent();
 	}, []);
 
 	return (

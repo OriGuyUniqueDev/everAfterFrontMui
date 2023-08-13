@@ -24,11 +24,12 @@ type UserAndEventContextProps = {
 
 export const UserAndEventContextProvider: FC<UserAndEventContextProps> = ({ children }) => {
 	const auth = useAuthUser();
-	const payloadData = auth();
+	let payloadData = auth();
 	const { user, handleGetOneUser, isLoadingUser, setUser, setEventDataInUser } = useUsers(payloadData);
 	const { event, handleGetOneEvent, isLoadingEvent } = useEvents(user.eventData, user);
 
 	useEffect(() => {
+		payloadData = auth();
 		handleGetOneUser();
 		handleGetOneEvent();
 	}, [user.eventData]);
