@@ -5,7 +5,7 @@ import { useAuthHeader, useSignIn } from "react-auth-kit";
 import RegistrationDataType from "@/interfaces/RegistrationDataType";
 import { AuthStateUserObject } from "react-auth-kit/dist/types";
 import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
-const { everAfterAuth } = useUserAndEventContext();
+
 const api = axios.create({
 	baseURL: import.meta.env.NODE_ENV === "dev" ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL_PROD,
 	headers: {

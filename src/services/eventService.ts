@@ -9,7 +9,7 @@ import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
 import UserFromServerType from "@/interfaces/UserFromServerType";
 import { ListOfUserType } from "@/interfaces/ListOfUserType";
 import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
-const { everAfterAuth } = useUserAndEventContext();
+
 const api = axios.create({
 	baseURL: import.meta.env.NODE_ENV === "dev" ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL_PROD,
 	headers: {
