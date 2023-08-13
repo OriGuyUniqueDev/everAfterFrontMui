@@ -91,6 +91,14 @@ const Router: FunctionComponent<RouterProps> = () => {
 					</RequireAuth>
 				}
 			/>
+			<Route
+				path="*"
+				element={
+					<RequireAuth loginPath="/welcomeBackLetsLogin">
+						<HomePage />
+					</RequireAuth>
+				}
+			/>
 		</Routes>
 	);
 };
