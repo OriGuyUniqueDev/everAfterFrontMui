@@ -14,7 +14,6 @@ type UserAndEventContextType = {
 	isLoadingEvent: boolean;
 	setUser: React.Dispatch<React.SetStateAction<UserFromServerType>>;
 	setEventDataInUser: (eventData: string) => Promise<void>;
-	everAfterAuth: any;
 };
 
 const UserAndEventContext = createContext<UserAndEventContextType | null>(null);
@@ -26,18 +25,16 @@ type UserAndEventContextProps = {
 export const UserAndEventContextProvider: FC<UserAndEventContextProps> = ({ children }) => {
 	const auth = useAuthUser();
 	let payloadData = auth();
-	const [everAfterAuth, setEverAfterAuth] = useState(localStorage.getItem("everAfterAuth"));
 	const { user, handleGetOneUser, isLoadingUser, setUser, setEventDataInUser } = useUsers(payloadData);
 	const { event, handleGetOneEvent, isLoadingEvent } = useEvents(user.eventData, user);
 
 	useEffect(() => {
 		payloadData = auth();
-		setEverAfterAuth(localStorage.getItem("everAfterAuth"));
 		handleGetOneUser();
 		handleGetOneEvent();
 	}, [user.eventData]);
 
-	return <UserAndEventContext.Provider value={{ user, handleGetOneUser, event, handleGetOneEvent, isLoadingEvent, isLoadingUser, setUser, setEventDataInUser, everAfterAuth }}>{children}</UserAndEventContext.Provider>;
+	return <UserAndEventContext.Provider value={{ user, handleGetOneUser, event, handleGetOneEvent, isLoadingEvent, isLoadingUser, setUser, setEventDataInUser }}>{children}</UserAndEventContext.Provider>;
 };
 
 export const useUserAndEventContext = (): UserAndEventContextType => {
