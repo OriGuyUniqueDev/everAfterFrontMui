@@ -351,6 +351,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 								<Button
 									type="submit"
 									variant="contained"
+									sx={{ width: "20rem" }}
 								>
 									{isLoadingCreateEvent ? (
 										<>
