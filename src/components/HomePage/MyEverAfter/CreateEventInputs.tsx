@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
-import { Stack, TextField, FormControlLabel, Checkbox, Button, CircularProgress, Typography } from "@mui/material";
+import UserFromServerType from "@/interfaces/UserFromServerType";
+import { getAllUsers } from "@/services/userService";
+import { Stack, TextField, FormControlLabel, Checkbox, Button, CircularProgress, Typography, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { lightGreen } from "@mui/material/colors";
 import { DateField } from "@mui/x-date-pickers";
 import { FormikProps } from "formik";
 import moment, { Moment } from "moment";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 
 interface CreateEventInputsProps {
 	formik: FormikProps<RegisterNewUserEventType>;
@@ -15,6 +18,23 @@ interface CreateEventInputsProps {
 
 const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, value, isLoadingCreateEvent }) => {
 	const { user } = useUserAndEventContext();
+	const [listOfUsers, setListOfUsers] = useState<UserFromServerType["email"][]>([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const data = await getAllUsers();
+				const updatedList: UserFromServerType["email"][] = [];
+				data.forEach((user: UserFromServerType) => {
+					updatedList.push(user.email);
+				});
+				setListOfUsers(updatedList);
+			} catch (error) {
+				throw new Error("error");
+			}
+		};
+		fetchData();
+	}, []);
 	return (
 		<Stack gap={1}>
 			<TextField
@@ -36,7 +56,7 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 				error={formik.touched.numOfGuest && Boolean(formik.errors.numOfGuest)}
 				helperText={formik.touched.numOfGuest && formik.errors.numOfGuest}
 			/>
-			<TextField
+			{/* <TextField
 				InputLabelProps={{
 					placeholder: "Connect the event to ?",
 					style: { color: user.businessAccount === true ? "#bbb" : "" },
@@ -55,7 +75,32 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 				disabled={user.businessAccount === true ? false : true}
 				// error={formik.touched.numOfGuest && Boolean(formik.errors.numOfGuest)}
 				// helperText={formik.touched.numOfGuest && formik.errors.numOfGuest}
-			/>
+			/> */}
+			<FormControl fullWidth>
+				<InputLabel id="connectedUser">Connect the event to?</InputLabel>
+				<Select
+					labelId="connectedUser"
+					id="connectedUserSelect"
+					name="connectedUser"
+					disabled={user.businessAccount === true ? false : true}
+					value={formik.values.connectedUser}
+					onChange={formik.handleChange}
+					onBlur={formik.handleBlur}
+					required
+					label="Connect the event to?"
+				>
+					{listOfUsers.map((user) => {
+						return (
+							<MenuItem
+								key={user}
+								value={user}
+							>
+								{user}
+							</MenuItem>
+						);
+					})}
+				</Select>
+			</FormControl>
 			<DateField
 				label="Wedding Date"
 				value={value}
