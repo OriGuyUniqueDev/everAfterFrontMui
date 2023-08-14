@@ -83,7 +83,10 @@ const LandingPageDrawerLeftNavBar: FunctionComponent<LandingPageDrawerLeftNavBar
 						</Typography>
 					</NavLink>
 					{user.businessAccount ? (
-						<NavLink to={"MyEvents"}>
+						<NavLink
+							to={"MyEvents"}
+							onClick={handleOpenDrawer}
+						>
 							<Typography
 								color={"text.primary"}
 								variant="body1"
