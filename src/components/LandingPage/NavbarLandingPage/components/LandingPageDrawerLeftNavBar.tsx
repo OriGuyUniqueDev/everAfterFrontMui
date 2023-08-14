@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import HomePageNavLeftSide from "@/components/HomePage/NavbarHomePage/components/HomePageNavLeftSide";
+import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 import useDrawers from "@/hooks/useDrawers";
 import { Stack, Typography } from "@mui/material";
 import { FunctionComponent } from "react";
@@ -11,6 +12,8 @@ interface LandingPageDrawerLeftNavBarProps {
 }
 
 const LandingPageDrawerLeftNavBar: FunctionComponent<LandingPageDrawerLeftNavBarProps> = ({ handleOpenDrawer }) => {
+	const { user } = useUserAndEventContext();
+
 	const authenticated = useIsAuthenticated();
 	const isAuthenticated = authenticated();
 
@@ -79,6 +82,20 @@ const LandingPageDrawerLeftNavBar: FunctionComponent<LandingPageDrawerLeftNavBar
 							My Tasks
 						</Typography>
 					</NavLink>
+					{user.businessAccount ? (
+						<NavLink to={"MyEvents"}>
+							<Typography
+								color={"text.primary"}
+								variant="body1"
+								fontSize={18}
+								display={{ xs: "none", lg: "block" }}
+							>
+								My Events
+							</Typography>
+						</NavLink>
+					) : (
+						""
+					)}
 				</>
 			) : (
 				<>

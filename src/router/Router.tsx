@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import BudgetTracker from "@/components/HomePage/BudgetTracker/BudgetTracker";
-import Calculator from "@/components/HomePage/Calculator/Calculator";
 import GuestList from "@/components/HomePage/GuestList/GuestList";
 import MyEvents from "@/components/HomePage/MyEvents/MyEvents";
 import TasksList from "@/components/HomePage/TasksList.tsx/TasksList";
