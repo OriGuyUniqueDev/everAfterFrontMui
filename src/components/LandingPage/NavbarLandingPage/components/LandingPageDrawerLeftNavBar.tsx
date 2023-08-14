@@ -88,7 +88,7 @@ const LandingPageDrawerLeftNavBar: FunctionComponent<LandingPageDrawerLeftNavBar
 								color={"text.primary"}
 								variant="body1"
 								fontSize={18}
-								display={{ xs: "none", lg: "block" }}
+								display={{ xs: "block", lg: "none" }}
 							>
 								My Events
 							</Typography>
