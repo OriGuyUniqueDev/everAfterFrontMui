@@ -10,3 +10,6 @@ a:visited {
 	text-decoration: none;
 	color: white;
 }
+.MuiInputLabel-root {
+	color: #bbb !important;
+}

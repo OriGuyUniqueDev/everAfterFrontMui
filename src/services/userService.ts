@@ -42,6 +42,7 @@ export async function getUser(userEmail: AuthStateUserObject | string | null) {
 		return Promise.reject(err.message);
 	}
 }
+
 export async function updateUser(userEmail: AuthStateUserObject | string | null, updateUserData: any, user: any) {
 	try {
 		const { data } = await api.patch(`users/${userEmail}`, updateUserData, {

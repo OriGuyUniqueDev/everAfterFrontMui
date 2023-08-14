@@ -6,8 +6,8 @@ import { ListOfUserType } from "@/interfaces/ListOfUserType";
 import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
 import { createEvent, findAllBusinessUsersEvents } from "@/services/eventService";
 import { successMsg, errorMsg } from "@/services/toastsMsg";
-import { updateUser } from "@/services/userService";
-import { Box, Button, Checkbox, CircularProgress, FormControlLabel, List, ListItem, Modal, Stack, TextField, Typography } from "@mui/material";
+import { getAllUsers, updateUser } from "@/services/userService";
+import { Box, Button, Checkbox, CircularProgress, FormControl, FormControlLabel, InputLabel, List, ListItem, MenuItem, Modal, Select, Stack, TextField, Typography } from "@mui/material";
 import { AxiosError } from "axios";
 import { useFormik } from "formik";
 import { FunctionComponent, useEffect, useState } from "react";
@@ -17,13 +17,15 @@ import * as yup from "yup";
 import { useAuthUser } from "react-auth-kit";
 import { DateField } from "@mui/x-date-pickers";
 import moment, { Moment } from "moment";
+import UserFromServerType from "@/interfaces/UserFromServerType";
 
 interface MyEventsProps {}
 
 const MyEvents: FunctionComponent<MyEventsProps> = () => {
 	const { user, handleGetOneUser, isLoadingEvent, setUser, handleGetOneEvent, setEventDataInUser, event } = useUserAndEventContext();
-	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
+	const [listOfUsers2, setListOfUsers2] = useState<UserFromServerType["email"][]>([]);
 	const [value, setValue] = useState<Moment | Date | undefined>(undefined);
+	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
 
 	const auth = useAuthUser();
 	const data = auth();
@@ -126,7 +128,19 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 			setListOfUsers(data);
 			console.log(listOfUsers);
 		};
-
+		const fetchData = async () => {
+			try {
+				const data = await getAllUsers();
+				const updatedList: UserFromServerType["email"][] = [];
+				data.forEach((user: UserFromServerType) => {
+					updatedList.push(user.email);
+				});
+				setListOfUsers2(updatedList);
+			} catch (error) {
+				throw new Error("error");
+			}
+		};
+		fetchData();
 		getUsersEventData();
 	}, []);
 	return (
@@ -225,7 +239,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 									error={formik.touched.numOfGuest && Boolean(formik.errors.numOfGuest)}
 									helperText={formik.touched.numOfGuest && formik.errors.numOfGuest}
 								/>
-								<TextField
+								{/* <TextField
 									InputLabelProps={{
 										placeholder: "Connect the event to ?",
 										style: { color: user.businessAccount === true ? "#bbb" : "" },
@@ -243,7 +257,33 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 									disabled={user.businessAccount === true ? false : true}
 									// error={formik.touched.numOfGuest && Boolean(formik.errors.numOfGuest)}
 									// helperText={formik.touched.numOfGuest && formik.errors.numOfGuest}
-								/>
+								/> */}
+								<FormControl fullWidth>
+									<InputLabel id="connectedUser">Connect the event to?</InputLabel>
+									<Select
+										labelId="connectedUser"
+										id="connectedUserSelect"
+										name="connectedUser"
+										disabled={user.businessAccount === true ? false : true}
+										value={formik.values.connectedUser}
+										onChange={formik.handleChange}
+										onBlur={formik.handleBlur}
+										required
+										label="Connect the event to?"
+										sx={{ width: "20rem" }}
+									>
+										{listOfUsers2.map((user2) => {
+											return (
+												<MenuItem
+													key={user2}
+													value={user2}
+												>
+													{user2}
+												</MenuItem>
+											);
+										})}
+									</Select>
+								</FormControl>
 								<DateField
 									label="Wedding Date"
 									value={value}
