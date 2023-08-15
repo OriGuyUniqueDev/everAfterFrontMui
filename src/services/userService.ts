@@ -13,6 +13,7 @@ const api = axios.create({
 		"Access-Control-Allow-Origin": "https://ever-after.netlify.app/",
 		"Access-Control-Allow-Credentials": true,
 		"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+		"Access-Control-Allow-Headers": true,
 		Accept: "application/json",
 		Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 	},
