@@ -28,4 +28,5 @@ export default interface EventFromServerType {
 	todoHigh: number;
 	todoLow: number;
 	_id: string;
+	connectedUser: string;
 }

@@ -11,7 +11,7 @@ import { ListOfUserType } from "@/interfaces/ListOfUserType";
 import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 
 const api = axios.create({
-	baseURL: import.meta.env.NODE_ENV === "dev" ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL_PROD,
+	baseURL: "http://localhost:3000",
 	headers: {
 		"Content-Type": "application/json",
 		"Access-Control-Allow-Origin": "https://ever-after.netlify.app/",
