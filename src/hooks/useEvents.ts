@@ -33,6 +33,7 @@ const useEvents = (eventId: AuthStateUserObject | string | null, user: UserFromS
 		numOfGuest: 0,
 		tasks: [],
 		venueName: "",
+		connectedUser: "",
 	});
 	const [events, setEvents] = useState<EventFromServerType[] | null>(null);
 	const [isLoadingEvent, setLoadingEvent] = useState(true);
@@ -79,6 +80,7 @@ const useEvents = (eventId: AuthStateUserObject | string | null, user: UserFromS
 				numOfGuest: 0,
 				tasks: [],
 				venueName: "",
+				connectedUser: "",
 			});
 		}
 	};
