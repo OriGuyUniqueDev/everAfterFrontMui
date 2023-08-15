@@ -23,6 +23,8 @@ interface MyEventsProps {}
 
 const MyEvents: FunctionComponent<MyEventsProps> = () => {
 	const { user, handleGetOneUser, isLoadingEvent, setUser, handleGetOneEvent, setEventDataInUser, event } = useUserAndEventContext();
+	console.log(event);
+
 	const [listOfUsers2, setListOfUsers2] = useState<UserFromServerType["email"][]>([]);
 	const [value, setValue] = useState<Moment | Date | undefined>(undefined);
 	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
@@ -133,7 +135,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 				const data = await getAllUsers();
 				const updatedList: UserFromServerType["email"][] = [];
 				data.forEach((user: UserFromServerType) => {
-					updatedList.push(user.email);
+					if (user.businessAccount === false) updatedList.push(user.email);
 				});
 				setListOfUsers2(updatedList);
 			} catch (error) {
@@ -222,7 +224,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 							<Stack gap={1}>
 								<TextField
 									InputLabelProps={{
-										placeholder: "Email Address",
+										placeholder: "est Guest Number",
 										style: { color: "#bbb" },
 									}}
 									sx={{ width: "20rem" }}
@@ -368,7 +370,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 												style: { color: "#bbb" },
 											}}
 											sx={{ width: "20rem" }}
-											value={formik.values.eventPlanner}
+											value={user.businessAccount ? user.fullName : formik.values.eventPlanner}
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
 											required

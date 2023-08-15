@@ -26,7 +26,7 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 				const data = await getAllUsers();
 				const updatedList: UserFromServerType["email"][] = [];
 				data.forEach((user: UserFromServerType) => {
-					updatedList.push(user.email);
+					if (user.businessAccount === false) updatedList.push(user.email);
 				});
 				setListOfUsers(updatedList);
 			} catch (error) {
@@ -184,7 +184,7 @@ const CreateEventInputs: FunctionComponent<CreateEventInputsProps> = ({ formik, 
 							style: { color: "#bbb" },
 						}}
 						sx={{ width: "20rem" }}
-						value={formik.values.eventPlanner}
+						value={user.businessAccount ? user.eventPannerName : formik.values.eventPlanner}
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
 						required
