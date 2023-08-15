@@ -7,7 +7,7 @@ import { AuthStateUserObject } from "react-auth-kit/dist/types";
 import { useUserAndEventContext } from "@/contexts/UserAndEventContexts";
 
 const api = axios.create({
-	baseURL: import.meta.env.NODE_ENV === "dev" ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL_PROD,
+	baseURL: import.meta.env.NODE_ENV === "development" ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL_PROD,
 	headers: {
 		"Content-Type": "application/json",
 		"Access-Control-Allow-Origin": "https://ever-after.netlify.app/",
@@ -32,6 +32,19 @@ export async function register(userData: RegistrationDataType) {
 export async function getUser(userEmail: AuthStateUserObject | string | null) {
 	try {
 		const { data } = await api.get(`users/${userEmail}`, {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
+			},
+		});
+
+		return data;
+	} catch (err) {
+		return Promise.reject(err.message);
+	}
+}
+export async function getUserById(id: AuthStateUserObject | string | null) {
+	try {
+		const { data } = await api.get(`users/by/${id}`, {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("everAfterAuth")}`,
 			},

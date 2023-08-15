@@ -6,7 +6,7 @@ import { ListOfUserType } from "@/interfaces/ListOfUserType";
 import RegisterNewUserEventType from "@/interfaces/RegisterNewUserEventType";
 import { createEvent, findAllBusinessUsersEvents } from "@/services/eventService";
 import { successMsg, errorMsg } from "@/services/toastsMsg";
-import { getAllUsers, updateUser } from "@/services/userService";
+import { getAllUsers, getUser, getUserById, updateUser } from "@/services/userService";
 import { Box, Button, Checkbox, CircularProgress, FormControl, FormControlLabel, InputLabel, List, ListItem, MenuItem, Modal, Select, Stack, TextField, Typography } from "@mui/material";
 import { AxiosError } from "axios";
 import { useFormik } from "formik";
@@ -23,6 +23,7 @@ interface MyEventsProps {}
 
 const MyEvents: FunctionComponent<MyEventsProps> = () => {
 	const { user, handleGetOneUser, isLoadingEvent, setUser, handleGetOneEvent, setEventDataInUser, event } = useUserAndEventContext();
+	const [userEmailEventSelected, setUserEmailEventSelected] = useState("");
 	const [listOfUsers2, setListOfUsers2] = useState<UserFromServerType["email"][]>([]);
 	const [value, setValue] = useState<Moment | Date | undefined>(undefined);
 	const [isLoadingCreateEvent, setLoadingCreateEvent] = useState(false);
@@ -31,31 +32,31 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 	const data = auth();
 	const formik = useFormik<RegisterNewUserEventType>({
 		initialValues: {
-			numOfGuest: 0,
+			numOfGuest: event.numOfGuest,
 			eventUser: data!.id,
-			hasVenue: false,
-			dateOfWedding: new Date(),
-			eventPlanner: user.eventPannerName,
-			venueName: "",
-			hasEventPlanner: user.businessAccount ? true : false,
-			budget: 0,
-			totalBudget: 0,
-			mealPrice: 0,
-			presents: 0,
-			totalGuestByList: 0,
-			brideSide: 0,
-			groomSide: 0,
-			guestList: [],
-			totalSpent: 0,
-			leftToSpend: 0,
-			alreadyPaid: 0,
-			expenses: [],
-			todoCompleted: 0,
-			todoHigh: 0,
-			todoLow: 0,
-			totalTodoLeft: 0,
-			tasks: [],
-			connectedUser: "",
+			hasVenue: event.hasVenue,
+			dateOfWedding: new Date(event.dateOfWedding),
+			eventPlanner: user.fullName,
+			venueName: event.venueName,
+			hasEventPlanner: true,
+			budget: event.budget,
+			totalBudget: event.totalBudget,
+			mealPrice: event.mealPrice,
+			presents: event.presents,
+			totalGuestByList: event.totalGuestByList,
+			brideSide: event.brideSide,
+			groomSide: event.groomSide,
+			guestList: event.guestList,
+			totalSpent: event.totalSpent,
+			leftToSpend: event.leftToSpend,
+			alreadyPaid: event.alreadyPaid,
+			expenses: event.expenses,
+			todoCompleted: event.todoCompleted,
+			todoHigh: event.todoHigh,
+			todoLow: event.todoLow,
+			totalTodoLeft: event.totalTodoLeft,
+			tasks: event.tasks,
+			connectedUser: event.connectedUser,
 		},
 		validationSchema: yup.object({
 			numOfGuest: yup.number(),
@@ -82,10 +83,36 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 		async onSubmit(values: RegisterNewUserEventType) {
 			try {
 				setLoadingCreateEvent(true);
+				const updatedEvent = {
+					numOfGuest: values.numOfGuest,
+					eventUser: data!.id,
+					hasVenue: values.hasVenue,
+					dateOfWedding: values.dateOfWedding,
+					eventPlanner: user.fullName,
+					venueName: values.venueName,
+					hasEventPlanner: values.hasEventPlanner,
+					budget: event.budget,
+					totalBudget: event.totalBudget,
+					mealPrice: event.mealPrice,
+					presents: event.presents,
+					totalGuestByList: event.totalGuestByList,
+					brideSide: event.brideSide,
+					groomSide: event.groomSide,
+					guestList: event.guestList,
+					totalSpent: event.totalSpent,
+					leftToSpend: event.leftToSpend,
+					alreadyPaid: event.alreadyPaid,
+					expenses: event.expenses,
+					todoCompleted: event.todoCompleted,
+					todoHigh: event.todoHigh,
+					todoLow: event.todoLow,
+					totalTodoLeft: event.totalTodoLeft,
+					tasks: event.tasks,
+					connectedUser: values.connectedUser,
+				};
+				const res = await createEvent(updatedEvent);
 
-				const res = await createEvent(values);
-
-				successMsg("Event Created");
+				successMsg("Event Created/Updated");
 				handleGetOneUser();
 				handleGetOneEvent();
 				setLoadingCreateEvent(false);
@@ -126,20 +153,23 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 		const getUsersEventData = async () => {
 			const data = await findAllBusinessUsersEvents(user.email, user);
 			setListOfUsers(data);
-			console.log(listOfUsers);
 		};
 		const fetchData = async () => {
 			try {
 				const data = await getAllUsers();
+
+				// const userEmailEventSelectedUpdated = await getUserById(event.eventUser);
+				// setUserEmailEventSelected(userEmailEventSelectedUpdated);
 				const updatedList: UserFromServerType["email"][] = [];
 				data.forEach((user: UserFromServerType) => {
-					updatedList.push(user.email);
+					if (user.businessAccount === false) updatedList.push(user.email);
 				});
 				setListOfUsers2(updatedList);
 			} catch (error) {
-				throw new Error("error");
+				console.log(error);
 			}
 		};
+
 		fetchData();
 		getUsersEventData();
 	}, []);
@@ -222,7 +252,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 							<Stack gap={1}>
 								<TextField
 									InputLabelProps={{
-										placeholder: "Email Address",
+										placeholder: "est Guest Number",
 										style: { color: "#bbb" },
 									}}
 									sx={{ width: "20rem" }}
@@ -264,10 +294,11 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 										labelId="connectedUser"
 										id="connectedUserSelect"
 										name="connectedUser"
+										displayEmpty
 										disabled={user.businessAccount === true ? false : true}
-										value={formik.values.connectedUser}
 										onChange={formik.handleChange}
 										onBlur={formik.handleBlur}
+										value={formik.values.connectedUser}
 										required
 										label="Connect the event to?"
 										sx={{ width: "20rem" }}
@@ -277,6 +308,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 												<MenuItem
 													key={user2}
 													value={user2}
+													selected={user2 === event.connectedUser ? true : false}
 												>
 													{user2}
 												</MenuItem>
@@ -315,6 +347,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 											onBlur={formik.handleBlur}
 											onChange={formik.handleChange}
 											value={formik.values.hasVenue}
+											checked={formik.values.hasVenue}
 										/>
 									}
 									label="Have You Closed a Venue Yet?"
@@ -355,6 +388,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 											onBlur={formik.handleBlur}
 											onChange={formik.handleChange}
 											value={user.businessAccount === false ? formik.values.hasEventPlanner : true}
+											checked={true}
 											// disabled={user.businessAccount}
 										/>
 									}
@@ -368,7 +402,7 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 												style: { color: "#bbb" },
 											}}
 											sx={{ width: "20rem" }}
-											value={formik.values.eventPlanner}
+											value={user.fullName}
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
 											required
@@ -386,7 +420,9 @@ const MyEvents: FunctionComponent<MyEventsProps> = () => {
 										/>
 									</>
 								) : (
-									<></>
+									<>
+										<Typography>test</Typography>
+									</>
 								)}
 								<Button
 									type="submit"

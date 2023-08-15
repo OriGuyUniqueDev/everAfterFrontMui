@@ -19,7 +19,7 @@ export default interface RegisterNewUserEventType {
 	hasEventPlanner: boolean;
 	hasVenue: boolean;
 	venueName: string;
-	dateOfWedding: Date | Moment;
+	dateOfWedding: Date | Moment | string;
 	budget: number;
 	presents: number;
 	mealPrice: number;
